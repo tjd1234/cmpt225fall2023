@@ -14,6 +14,6 @@
 - [Sample final questions](sample_final_questions/final_sample_questions.pdf) ([solutions](sample_final_questions/final_sample_questions_sol.pdf))
 
 
-# Lecture Notes
+# Lecture Notes and Code
 
 [Code, notes, etc. for the lectures are stored here](lecture_notes/) ([direct link to repository page](https://github.com/tjd1234/cmpt225fall2023/tree/main/lecture_notes)).
