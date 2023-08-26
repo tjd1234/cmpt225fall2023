@@ -1,6 +1,6 @@
 # Assignments
 
-- Assignment 1
+- [Assignment 1](a1)
 - Assignment 2
 - Assignment 3
 - Assignment 4
