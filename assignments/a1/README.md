@@ -430,6 +430,9 @@ program thoroughly.
 - Comments are used when needed to explain code whose purpose is not obvious
   from the code itself. There should be *no* commented-out code from previous
   versions.
+- Source code readability marks may be deducted for code that is unreadable in
+  some way not covered by the above. The deduction is proportional to how
+  serious the problem is.
 
 ### Deductions
 
