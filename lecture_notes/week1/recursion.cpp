@@ -203,44 +203,6 @@ void test_count_spaces2()
 
 //
 // Pre-condition:
-//    none
-// Post-condition:
-//    returns the number of spaces in s
-// Note:
-//    string_view is a C++17 standard class. A string_view stores a pointer to
-//    the start of a string, and a length. Thus the substr function is
-//    relatively efficient. It works with both C-style strings and C++ strings.
-//
-int count_spaces3(string_view s)
-{
-    if (s == "")
-    {
-        return 0;
-    }
-    else
-    {
-        return (s[0] == ' ') + count_spaces3(s.substr(1));
-    }
-}
-
-void test_count_spaces3()
-{
-    Test("test_count_spaces3");
-    assert(count_spaces3("") == 0);
-    assert(count_spaces3(" ") == 1);
-    assert(count_spaces3("  ") == 2);
-    assert(count_spaces3("   ") == 3);
-    assert(count_spaces3("a") == 0);
-    assert(count_spaces3(" a") == 1);
-    assert(count_spaces3("a ") == 1);
-    assert(count_spaces3(" a ") == 2);
-    assert(count_spaces3("a a") == 1);
-    assert(count_spaces3("a  a") == 2);
-    assert(count_spaces3("aa") == 0);
-}
-
-//
-// Pre-condition:
 //    begin is a valid index for s
 // Post-condition:
 //    returns the index of the first occurrence of target in s
@@ -297,7 +259,6 @@ int main()
     test_sum_vec();
     test_count_spaces1();
     test_count_spaces2();
-    test_count_spaces3();
     test_index_of();
     test_sum_array();
     cout << "All recursion.cpp tests passed!\n";
