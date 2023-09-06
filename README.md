@@ -15,4 +15,6 @@
 
 # Lecture Notes and Code
 
-[Code, notes, etc. for the lectures are stored here](lecture_notes/) ([direct link to repository page](https://github.com/tjd1234/cmpt225fall2023/tree/main/lecture_notes)).
+[Code, notes, etc. for the lectures are stored here (direct link to repository page)](https://github.com/tjd1234/cmpt225fall2023/tree/main/lecture_notes).
+
+**Be aware**: notes are often updated just before, and after, each lecture.

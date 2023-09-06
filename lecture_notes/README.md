@@ -1,8 +1,4 @@
-These are the planned topics and notes for each week. To access them, [follow
-this direct link to the repository
-page](https://github.com/tjd1234/cmpt225fall2023/tree/main/lecture_notes).
-
-**Be aware**: notes are often updated just before, and after, each lecture.
+These are the planned topics and notes for each week.
 
 - [Week 1](week1)
 - [Week 2](week2)
