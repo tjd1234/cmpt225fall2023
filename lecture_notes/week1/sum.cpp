@@ -15,8 +15,7 @@
 using namespace std;
 
 //
-// In C/C++, basic arrays are passed using a pointer and a size. Basic arrays do
-// not store their size!
+// In C/C++, arrays are usually passed using a pointer and a size. 
 //
 double sum_array1(double *arr, int size)
 {
@@ -41,7 +40,7 @@ void test_sum_array1()
 //
 // Using a while-loop instead of a for-loop.
 //
-// Generally, for-loop are preferred over while-loops because they put the loop
+// Generally, for-loops are preferred over while-loops because they put the loop
 // control information in one place at the top of the loop.
 //
 double sum_array1a(double *arr, int size)
@@ -66,7 +65,9 @@ void test_sum_array1a()
     assert(sum_array1a(arr + 2, 0) == 0.0);
 }
 
-// access array elements using pointer arithmetic
+//
+// Access array elements using pointer arithmetic instead of []-notation.
+//
 double sum_array1b(double *arr, int size)
 {
     double total = 0;
@@ -115,8 +116,8 @@ void test_sum_array2()
 // Another way to use pointers to iterate through an array. Works on any
 // sub-array.
 //
-// begin points to the first element in the sub-array, and end points to the
-// element *after* the last element in the sub-array.
+// - begin points to the first element in the sub-array
+// - end points to the element *after* the last element in the sub-array
 //
 double sum_array3(double *begin, double *end)
 {
