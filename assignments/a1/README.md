@@ -57,6 +57,8 @@ empty `Wordlist` object:
 //     none
 // Post-condition:
 //     Creates an empty Wordlist object.
+// Performance:
+//     It should always take a very small, constant amount of time.
 //
 Wordlist();
 ```
@@ -80,6 +82,9 @@ initializes the new `Wordlist` to contain copies of all the strings in the other
 // Post-condition:
 //     Creates a new Wordlist object that is a copy of other; other is not modified
 //     in any way, and other and the new object do not share any values.
+// Performance:
+//     It's worst-case running time should be proportional to the length of
+//     other (or better).
 //
 Wordlist(const Wordlist& other);
 ```
@@ -96,9 +101,13 @@ simplicity, you can assume that the file is a text file that always exists:
 //     Creates a new Wordlist object that contains all the words in the file
 //     filename. If the file contains duplicate words, then the new Wordlist
 //     object will contain only one copy of each word.
+// Performance:
+//     It's worst-case running time should be proportional to the number of
+//     words in the file (or better).
 // Note:
-//     For this constructor a "word" is defined as the string return by the >> operator.
-//     See the read_from_terminal() function for example of how to use >> to read words.
+//     For this constructor a "word" is defined as the string return by the 
+//     >> operator. See the read_from_terminal() function for example of how 
+//     to use >> to read words.
 //
 Wordlist(const string& filename);
 ```
@@ -128,7 +137,7 @@ are always valid as long as the list still exists.
 > believe this freezing feature is a good one. Maybe it is too inconvenient, or
 > makes some code more complicated to write? But if you don't use freezing, then
 > how could you be sure that the pointers in the returned vector are always
-> valid?
+> pointing to valid values?
 
 ### Testing Your Code
 
