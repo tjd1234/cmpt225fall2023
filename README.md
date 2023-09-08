@@ -12,6 +12,10 @@
 - [Sample midterm](sample_midterm_questions/225_midterm_BBY_summer2023.pdf) ([solutions](225_midterm_BBY_summer2023_sol))
 - [Sample final questions](sample_final_questions/final_sample_questions.pdf) ([solutions](sample_final_questions/final_sample_questions_sol.pdf))
 
+# Using Linux
+
+- [Installing WSL Linux on Windows](using_linux/installing_wsl_linux_on_windows.md).
+- [Some hints for setting up and using your Linux environment](using_linux/README.md).
 
 # Lecture Notes and Code
 
