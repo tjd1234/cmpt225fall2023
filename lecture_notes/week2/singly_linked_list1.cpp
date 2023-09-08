@@ -18,15 +18,21 @@ struct Node
 
 //
 // head always points the the first node in the list.
-// nullptr means the list is empty.
+// If head == nullptr, the list is empty.
 //
 Node *head = nullptr;
 
+//
+// returns true if the list is empty
+//
 bool empty()
 {
     return head == nullptr;
 }
 
+//
+// returns the number of items in the list
+//
 int size()
 {
     int count = 0;
@@ -39,7 +45,10 @@ int size()
     return count;
 }
 
-void print_list()
+//
+// prints the contents of the list to cout
+//
+void print()
 {
     cout << "List: ";
     Node *p = head;
@@ -60,6 +69,9 @@ void push_front(const string &s)
     head = n;
 }
 
+//
+// remove the string at the front of the list and return it
+//
 string pop_front()
 {
     assert(!empty());
@@ -70,6 +82,9 @@ string pop_front()
     return s;
 }
 
+//
+// removes all nodes from the list
+//
 void clear()
 {
     while (!empty())
@@ -103,7 +118,7 @@ int main()
     // print the data in the second node
     cout << "head->next->data = " << quote(head->next->data) << endl;
 
-    print_list();
+    print();
 
     //
     // de-allocate all memory allocated with new

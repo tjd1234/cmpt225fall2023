@@ -11,7 +11,7 @@
 using namespace std;
 
 //
-// List_base is abstract base class. All of its methods are:
+// List_base is an abstract base class. All of its methods are:
 //
 // - virtual, meaning they can be overridden by a class that inherits from
 //   List_base; in C++ this is indicated by the "virtual" keyword

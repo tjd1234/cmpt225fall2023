@@ -83,14 +83,6 @@ public:
         return s;
     }
 
-    //
-    // return a copy the string in the first node in the list
-    //
-    string peek_front() const
-    {
-        assert(!empty());
-        return head->data;
-    }
 
     //
     // remove all nodes from the list
