@@ -54,12 +54,9 @@ void solution2()
     // using a constant makes it easy to change the array size
     const int N = 11;
 
-    // make the array
+    // make the array a local so, so it is automatically deleted when the
+    // function returns
     int arr[N];
-    for(int i = 0; i < N; i++)
-    {
-        arr[i] = -9999;
-    }
 
     // initialize the array
     for (int i = 0; i < N; i += 3)
@@ -114,7 +111,7 @@ void solution3()
 
 int main()
 {
-    // solution1();
-    solution2();
+    solution1();
+    // solution2();
     // solution3();
 }
