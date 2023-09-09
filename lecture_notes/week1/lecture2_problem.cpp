@@ -17,7 +17,7 @@ using namespace std;
 void solution1()
 {
     // using a constant makes it easy to change the array size
-    const int N = 9;
+    const int N = 3000;
 
     // make the array
     // int arr[N];
@@ -52,17 +52,21 @@ void solution1()
 void solution2()
 {
     // using a constant makes it easy to change the array size
-    const int N = 9;
+    const int N = 11;
 
     // make the array
     int arr[N];
+    for(int i = 0; i < N; i++)
+    {
+        arr[i] = -9999;
+    }
 
     // initialize the array
     for (int i = 0; i < N; i += 3)
     {
         arr[i] = 4;
-        arr[i + 1] = 5;
-        arr[i + 2] = 9;
+        if (i + 1 < N) arr[i + 1] = 5;
+        if (i + 2 < N) arr[i + 2] = 9;
     }
 
     // print the results
@@ -110,7 +114,7 @@ void solution3()
 
 int main()
 {
-    solution1();
-    // solution2();
+    // solution1();
+    solution2();
     // solution3();
 }

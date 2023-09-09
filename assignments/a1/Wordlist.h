@@ -48,6 +48,7 @@ class Wordlist : public Wordlist_base
         string word;
         int count;
         Node *next;
+        Node *prev;
     };
 
     //
