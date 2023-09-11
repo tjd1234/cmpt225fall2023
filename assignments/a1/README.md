@@ -455,7 +455,7 @@ program thoroughly.
     `vector<string*>`
   - have no statement of originality, or it's modified in any way.
 - at least **-1 mark** if your file has an incorrect name, or you submit it in
-  the incorrect format, etc.; possibly multiple deductions if there are multiple
+  an incorrect format, etc.; possibly multiple deductions if there are multiple
   problems
 - at least **-1 mark** if you submit a non-working file
   - if the marker can easily fix your file and make it work, then there is only a
