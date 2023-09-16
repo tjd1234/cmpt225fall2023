@@ -64,8 +64,7 @@ struct Wordlist_base
     //    It's worst-case running time should be constant (i.e. the same no
     //    matter how long the list is).
     //
-    string first_word() const
-    {
+    string first_word() const     {
         if (length() == 0)
         {
             throw runtime_error("first_word: empty list has no first word");
@@ -99,9 +98,7 @@ struct Wordlist_base
     // Performance:
     //    It's worst-case running time should be proportional to the length of
     //    the list (or better).
-    // Note:
-    //    The first node has index 0, the second node has index 1,
-    //    etc.
+    //
     virtual string get_word(int index) const = 0;
 
     //
@@ -109,7 +106,7 @@ struct Wordlist_base
     //    !is_frozen()
     // Post-condition:
     //    If w is not in the list already, adds w to the end of the list.
-    //    If w is already in the list, then calling add_word does nothing.
+    //    If w is already in the list, increases the count of w by 1.
     // Performance:
     //    It's worst-case running time should be proportional to the length of
     //    the list (or better).

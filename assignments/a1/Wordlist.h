@@ -30,6 +30,7 @@
 // Do not use any other #includes
 //
 #include "Wordlist_base.h"
+#include <algorithm>
 #include <cassert>
 #include <fstream>
 #include <iostream>
@@ -46,7 +47,6 @@ class Wordlist : public Wordlist_base
     struct Node
     {
         string word;
-        int count;
         Node *next;
         Node *prev;
     };

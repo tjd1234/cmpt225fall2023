@@ -45,6 +45,7 @@ int size()
     return count;
 }
 
+
 //
 // prints the contents of the list to cout
 //
@@ -75,6 +76,7 @@ void push_front(const string &s)
 string pop_front()
 {
     assert(!empty());
+
     string s = head->data;
     Node *p = head;
     head = head->next;
@@ -123,7 +125,7 @@ int main()
     //
     // de-allocate all memory allocated with new
     //
-    clear();
+    // clear();
     // delete n1;
     // delete n2;
 }

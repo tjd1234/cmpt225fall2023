@@ -1,6 +1,5 @@
-// List.cpp
+// List1.cpp
 
-#include "List_base.h"
 #include <cassert>
 #include <iostream>
 
@@ -16,7 +15,7 @@ string quote(string s)
 // its methods.
 //
 
-class List : public List_base
+class List
 {
     // private
     struct Node
@@ -133,8 +132,6 @@ public:
         cout << "List destructor called" << endl;
     }
 
-    //
-    // get(int i) is an example of a method that is not in the List_base class.
     //
     // Returns a copy of the string in the node at the given index. The first
     // node is index 0, the second is index 1, etc.

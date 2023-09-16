@@ -6,7 +6,7 @@
 // Thoroughly test your Wordlist class to make sure it is correct.
 //
 
-#include "Wordlist_sol.h"
+#include "Wordlist.h"
 #include "test.h"
 
 void read_from_terminal()

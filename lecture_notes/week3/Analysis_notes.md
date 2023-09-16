@@ -1,13 +1,19 @@
 # Analysis Tools (Chapter 4)
 
-When studying the running-time and memory usage of algorithms, we will focus on
-algorithms that take $n$ values as input, and then perform some carefully chosen
-**key operation** $f(n)$ amount of work.
+When studying the running-time and memory usage of algorithms, we will usually
+focus on algorithms that take $n$ values as input, and then perform some
+carefully chosen **key operation** some number of times on the input. 
+
+The total number of key operations is $f(n)$, the amount of work the algorithm
+does. Also, with a well-chosen key operation, $f(n)$ is usually proportional to
+the running time of the algorithm, and so we will sometimes say that $f(n)$ is
+the algorithm's running time.
 
 For example, the **quicksort** sorting algorithm takes an array of $n$ numbers
-as input, and then does about $f(n) = n \log n$ *comparisons to put the values
-in sorted order. Comparisons are the traditional key operation of work for
-sorting algorithms.
+as input, and then does about $f(n) = n \log n$ *comparisons* to put the values
+in sorted order. Comparisons are the traditional key operation for sorting
+algorithms. And also the actual running time of quicksort is proportional to 
+$n \log n$ in practice.
 
 In this course, we'll mainly see the following seven functions when studying
 algorithm running time ....
@@ -31,19 +37,22 @@ also constant functions:
 - $h_5(n) = f(n)^{g(n)}$
 - $h_6(n) = f(g(n))$
 
+An example of algorithm with a constant running time is getting the first
+element (`arr[0]`) of an array. For arrays, getting an element you know the
+index of is always a constant-time operation, no matter how big the array is.
+
 ## The Logarithm Function
 
 The **logarithm function** is $f(n) = \log_b n$, where $b$ is a fixed constant
-called the **base** of the logarithm. We also assume $b > 1$. It is the
-*inverse* of the exponential function, i.e. $x = \log_b n$ if and only if 
-$b^x = n$.
+called the **base** of the logarithm. We assume $b > 1$. It is the *inverse* of
+the exponential function, i.e. $x = \log_b n$ if and only if $b^x = n$.
 
-In computer science, if we don't write the base for a logarithm, we assume it is
-2, i.e. $\log n = \log_2 n$.
+In computer science, if we don't write a logarithm's base, we assume it is 2,
+i.e. $\log n = \log_2 n$.
 
-> **Careful!** Mathematics usually assumes logarithms are to the base $e$, i.e.
-> in math $\log n = \log_e n = \ln n$. We use 2 because it is more common than
-> $e$ in computer science.
+> **Careful!** Mathematics usually assumes logarithms with no explicit base are
+> base $e$, i.e. in math $\log n = \log_e n = \ln n$. We use 2 because it is
+> more common than $e$ in computer science.
 
 Proposition 4.1 lists the rules you should know about logarithms. Given real
 numbers $a > 0$, $b > 1$, $c > 0$, and $d > 1$:
@@ -59,13 +68,16 @@ is the number of *bits* needed to represent it as a regular binary number. For
 example, the base 10 number 250 needs 8 bits to represent it as a binary number,
 and $\lceil \log_2 250 \rceil = \lceil 7.97 \rceil = 8$.
 
-Similarly, $\lceil \log_{10} n \rceil$ is the number of base *digits* needed to
-represent $n$. For example, the number $2^{100}$ has 31 digits, and 
-$\lceil \log_{10} 2^{100} \rceil = \lceil 30.1 \rceil = 31$.
+Similarly, $\lceil \log_{10} n \rceil$ is the number of base 10 *digits* needed
+to represent $n$. For example, the number $2^{100}$ has 31 digits, and $\lceil
+\log_{10} 2^{100} \rceil = \lceil 30.1 \rceil = 31$.
 
 The expression $\lceil x \rceil$ is the **ceiling** of $x$, i.e. the smallest
 integer greater than or equal to $x$. The expression $\lfloor x \rfloor$ is the
 **floor** of $x$, i.e. the largest integer less than or equal to $x$.
+
+An example of an algorithm that has a logarithmic running time is binary search,
+i.e. searching for a value in a sorted array.
 
 ## The Linear Function
 
@@ -83,17 +95,23 @@ To prove that $h_1$ is linear, suppose $f(n) = an + b$ and $g(n) = cn + d$. Then
 $h_1(n) = f(n) + g(n) = (an + b) + (cn + d) = (a + c)n + (b + d)$, which is
 linear because $a + c$ and $b + d$ are fixed constants.
 
+An example of an algorithm with a linear running time is summing a list of
+numbers: we do about 1 addition for each number on the list, so $n$ additions in
+total. 
+
 ## The N-Log-N Function
 
 The function $f(n) = n \log n$ is called the **n-log-n function**, and arises in
-a number of important places in computer science. For instance, for any
-comparison-based sorting algorithm (such as mergesort or quicksort) there are
-always some inputs that need at least $n \log n$ comparisons to sort.
+a number of important places in computer science. 
+
+This is an important one because $n \log n$ is the average-case running time of
+the sorting algorithms quicksort and mergesort.
+
 
 ## The Quadratic Function
 
-$f(n) = n^2$ is the basic **quadratic function**. In programming, we often see
-it in nested loops, e.g.
+$f(n) = n^2$ is the basic **quadratic function**. In programming, we often
+arises due to nested loops, e.g.
 
 ```
 count = 0
@@ -107,8 +125,8 @@ executes $n$ times, and the inner loop executes $n$ times for each iteration of
 the outer loop, and so the total number of executions of the inner loop is 
 $n \cdot n = n^2$.
 
-A useful fact to remember is that the sum of the numbers from 1 to $n$ is a
-quadratic function:
+A useful fact to remember is that the sum of the numbers from 1 to $n$ is
+quadratic:
 
 $$
 1 + 2 + 3 + \ldots + n = \frac{n(n+1)}{2}
@@ -116,10 +134,13 @@ $$
 
 $\frac{n(n+1)}{2}$ can be re-written $\frac{1}{2}n^2 + \frac{1}{2}n$.
 
+Examples of algorithms with quadratic running times are insertion sort,
+selection sort, and bubble sort. They all run in quadratic time in the worst
+case.
 
 ## The Cubic Function and Other Polynomials
 
-The **cube function** is $f(n) = n^3$. The cubic, quadratic, linear, and
+The basic **cubic function** is $f(n) = n^3$. The cubic, quadratic, linear, and
 constant functions are all examples of **polynomial** functions, i.e. functions
 of the form $f(n) = a_k n^k + a_{k-1} n^{k-1} + \ldots + a_1 n + a_0$, where $k$
 is a non-negative integer and coefficients $a_0, a_1, \ldots, a_k$ are fixed
@@ -140,51 +161,54 @@ $$
 
 ## The Exponential Function
 
-When $b$ is a positive constant, the **exponential function** is $f(n) = b^n$.
-$b$ is called the **base**, and $n$ is the **exponent**. In algorithm analysis
+If $b$ is a positive constant, then the **exponential function** is $f(n) =
+b^n$. $b$ is the **base**, and $n$ is the **exponent**. In algorithm analysis
 the most common base is 2, and so we usually see $f(n) = 2^n$.
 
-Here are some rules for exponents (Proposition 4.4):
+Here are some rules for exponents you should know (Proposition 4.4):
 
 1. $(b^a)^c = b^{ac}$
 2. $b^a b^c = b^{a+c}$
 3. $b^a / b^c = b^{a-c}$
 
+An example of an algorithm with an exponential running time is printing all bit
+strings of length $n$. There are $2^n$ such strings, and so the algorithm must
+do $2^n$ key operations (in this case, printing a bit string is the key
+operation).
 
 ## Comparing Growth Rates
 
 When you graph the functions above, you can see that they grow at different
-rates, i.e. some of the functions are steeper than others. The rates of growth
-are ordered from fastest to slowest like this:
+rates, i.e. some of the functions are steeper than others. Here they are ordered
+from slowest growing to fastest growing:
 
-- constant, e.g. $f(n) = 50$
-- logarithm, e.g. $f(n) = 3\log 2n + 5$
-- linear, e.g. $f(n) = 20n + 5$
-- n-log-n, e.g. $f(n) = 5n \log n - 10$
-- quadratic, e.g. $f(n) = 3n^2 + 2n + 25$
-- cubic, e.g. $f(n) = 2n^3 + 5n^2 + 3n + 1$
-- exponential, e.g. $f(n) = 2^n + 3$
+- *constant*, e.g. $f(n) = 50$
+- *logarithm*, e.g. $f(n) = 3\log 2n + 5$
+- *linear*, e.g. $f(n) = 20n + 5$
+- *n-log-n*, e.g. $f(n) = 5n \log n - 10$
+- *quadratic*, e.g. $f(n) = 3n^2 + 2n + 25$
+- *cubic*, e.g. $f(n) = 2n^3 + 5n^2 + 3n + 1$
+- *exponential*, e.g. $f(n) = 2^n + 3$
 
 When we analyze the performance of an algorithm in this course, we will usually
-be putting the algorithm into one of the seven categories above. Generally, when
-$n$ is big, the constant functions are the fastest, and the exponential
-functions are the slowest.
+put the algorithm into one of the seven categories above. Generally, when $n$ is
+big, the constant functions are the fastest, and the exponential functions are
+the slowest.
 
 ## Algorithm Analysis
 
 A **data structure** is a systematic way of organizing data. For example,
 arrays, strings, and linked-lists are examples of data structures. An
 **algorithm** is a step-by-step procedure for performing some task in a finite
-amount of time. Algorithms and data structures work together. Data structures
-and algorithms usually work together: the data structure you use often
-determines the algorithm you use, and vice versa.
+amount of time. Data structures and algorithms usually work together: the data
+structure you use often determines the algorithm you use, and vice versa.
 
-We will usually be interested in the **running time** of an algorithm, i.e. how
-fast it is. We do this by counting how many times some **key operation** the
+We're mainly interested in the **running time** of an algorithm, i.e. how fast
+it is. We do this by counting how many times some **key operation** the
 algorithm executes. 
 
-Sometimes we will also be interested in the **memory usage** of an
-algorithm.
+Sometimes we will also be interested in the **memory usage** of an algorithm.
+
 
 ### Empirical Analysis of Algorithms
 
@@ -193,7 +217,7 @@ experiments. This is called **empirical analysis**. While this can be quite
 useful, it has some drawbacks:
 
 - experiments can only be done on a relatively small set of inputs, limited by
-  the time and memory available on your computer
+  the time and memory available on your computer, and how much input you have
 - when comparing algorithms, it can be hard to be sure that the experimental
   conditions are the same, e.g. different computers run at different speeds
 - the algorithm has to be implemented and debugged, which can be time-consuming
@@ -206,8 +230,8 @@ this can give us useful results more quickly than empirical analysis.
 
 Above we said an algorithm is a step-by-step procedure for performing some task.
 So what is a *step*? This depends on your algorithm and application. We want to
-choose steps that make sense for the problem, and that are simple enough to
-analyze mathematically. 
+choose steps that make sense for the problem, that are simple enough to analyze
+mathematically, and also reflect the true running-time of an algorithm. 
 
 We'll call the step we choose for analyzing an algorithm the **primitive
 operation**, or **key operation** (or **key instruction**), or **barometer
@@ -226,18 +250,18 @@ For example:
   the algorithm.
 - For **multiplying two matrices of numbers**, `*` is a good key operation.
 
-The choice of key operation for an algorithm can have a big difference on its
-performance, and so it is important to choose carefully. 
 
 ### Best, Average, and Worst Cases
 
 Many algorithms have different running times for different inputs of the same
-size. The figure on page 165 of the textbook shows a graph of different running
-times.
+size. For example, quicksort tends to run *slower* on partially sorted data, and
+*faster* on data that **isn't** partially ordered (quicksort likes random
+data!). The figure on page 165 of the textbook shows a graph of different
+running times.
 
 ![graph of algorithm running times](Figure4_4.png "Figure 4.4: running times")
 
-So there are at least three general cases to consider:
+We often distinguish these three cases
 
 - the **best case**, i.e. what is *least* number of key operations can do for an
   input of size $n$?
@@ -247,9 +271,11 @@ So there are at least three general cases to consider:
   for an input of size $n$?
 
 In practice, the *best case* is great when it happens, but we should *not* count
-on it. The *average case* is more useful, since the it occurs most frequently.
-However, it can be difficult to analyze the average case mathematically since it
-usually requires making assumptions about the probabilities of different inputs. 
+on it; depending on the algorithm, it might happen very rarely. The *average
+case* is more useful, since it is the case that occurs most frequently. However,
+it can be difficult to analyze the average case mathematically since it usually
+requires making statistical assumptions about the likelihood of different
+inputs. 
 
 So, in this course, we will usually focus on the *worst case*, i.e. the most
 number of key operations that could possibly be done for an input of size $n$.

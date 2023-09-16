@@ -32,6 +32,7 @@ class List
     Node *head = nullptr;
 
 public:
+    // method
     bool empty() const
     {
         return head == nullptr;
