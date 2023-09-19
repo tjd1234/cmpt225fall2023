@@ -120,8 +120,8 @@ struct Wordlist_base
     // Pre-condition:
     //    !is_frozen()
     // Post-condition:
-    //    Removes all occurrences of w from the word list. If w is not in the
-    //    list, then does nothing.
+    //    Removes w from the word list. If w is not in the list, then does 
+    //    nothing.
     // Performance:
     //    It's worst-case running time should be proportional to the length of
     //    the list (or better).
@@ -132,12 +132,13 @@ struct Wordlist_base
     // Pre-condition:
     //    none
     // Post-condition:
-    //    Freezes the word list.
+    //    Freezes the word list. If the list is already frozen, it remains
+    //    frozen.
     //
     //    Then returns a vector of pointers to each word in the word list,
     //    sorted in alphabetical order.
     //
-    //    Does not modify the word list.
+    //    Does not modify the word list (other than freezing it).
     //
     // Performance:
     //    It's worst-case running time should be proportional to the square of
