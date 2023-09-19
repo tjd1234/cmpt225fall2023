@@ -172,9 +172,9 @@ Here are some rules for exponents you should know (Proposition 4.4):
 3. $b^a / b^c = b^{a-c}$
 
 An example of an algorithm with an exponential running time is printing all bit
-strings of length $n$. There are $2^n$ such strings, and so the algorithm must
-do $2^n$ key operations (in this case, printing a bit string is the key
-operation).
+strings of length $n$. There are $2^n$ bit strings of length $n$, and so the
+algorithm must do $2^n$ key operations (in this case, printing a bit string is
+the key operation).
 
 ## Comparing Growth Rates
 
@@ -190,10 +190,10 @@ from slowest growing to fastest growing:
 - *cubic*, e.g. $f(n) = 2n^3 + 5n^2 + 3n + 1$
 - *exponential*, e.g. $f(n) = 2^n + 3$
 
-When we analyze the performance of an algorithm in this course, we will usually
-put the algorithm into one of the seven categories above. Generally, when $n$ is
-big, the constant functions are the fastest, and the exponential functions are
-the slowest.
+Generally, when $n$ is big, the constant functions are the fastest, and the
+exponential functions are the slowest. When we analyze the performance of an
+algorithm in this course, we will usually put the algorithm into one of the
+seven categories above. 
 
 ## Algorithm Analysis
 
@@ -204,17 +204,19 @@ amount of time. Data structures and algorithms usually work together: the data
 structure you use often determines the algorithm you use, and vice versa.
 
 We're mainly interested in the **running time** of an algorithm, i.e. how fast
-it is. We do this by counting how many times some **key operation** the
-algorithm executes. 
+it is. We do this indirectly by counting how many times some **key operation**
+the algorithm executes. Importantly, we must be careful to choose a key
+operation such that this count is proportional to the running time of the
+algorithm.
 
 Sometimes we will also be interested in the **memory usage** of an algorithm.
 
 
 ### Empirical Analysis of Algorithms
 
-One way to determine an algorithm's running time is to implement it and perform
-experiments. This is called **empirical analysis**. While this can be quite
-useful, it has some drawbacks:
+One way to determine an algorithm's running time is to implement it and run
+performance experiments. This is called **empirical analysis**. While this can
+be quite useful, it has some drawbacks:
 
 - experiments can only be done on a relatively small set of inputs, limited by
   the time and memory available on your computer, and how much input you have
@@ -222,7 +224,7 @@ useful, it has some drawbacks:
   conditions are the same, e.g. different computers run at different speeds
 - the algorithm has to be implemented and debugged, which can be time-consuming
 
-In this course, we will introduce the **analytic analysis** of algorithms, which
+In this course, we will focus on **analytic analysis** of algorithms, which
 involves a mathematical examination of an algorithms pseudocode. In many cases,
 this can give us useful results more quickly than empirical analysis.
 
@@ -231,7 +233,7 @@ this can give us useful results more quickly than empirical analysis.
 Above we said an algorithm is a step-by-step procedure for performing some task.
 So what is a *step*? This depends on your algorithm and application. We want to
 choose steps that make sense for the problem, that are simple enough to analyze
-mathematically, and also reflect the true running-time of an algorithm. 
+mathematically, and also reflect the true running-time of the algorithm. 
 
 We'll call the step we choose for analyzing an algorithm the **primitive
 operation**, or **key operation** (or **key instruction**), or **barometer
@@ -270,7 +272,7 @@ We often distinguish these three cases
 - the **average case**, i.e. what is *average* number of key operations can do
   for an input of size $n$?
 
-In practice, the *best case* is great when it happens, but we should *not* count
+In practice, the *best case* is great when it happens, but we should *not* rely
 on it; depending on the algorithm, it might happen very rarely. The *average
 case* is more useful, since it is the case that occurs most frequently. However,
 it can be difficult to analyze the average case mathematically since it usually
@@ -284,9 +286,9 @@ and the results can still be useful.
 
 ### Asymptotic Notation: O-notation
 
-Computer scientists traditionally use **asymptotic notation** to help describe
-the running times of algorithms. We will define it precisely, and then see how
-to apply it.
+Computer scientists traditionally use **asymptotic notation**, or
+**O-notation**, to help describe the running times of algorithms. We will define
+it precisely, and then see how to apply it.
 
 **Definition of O-notation**. Let $f(n)$ and $g(n)$ be functions that map
 non-negative integers to real numbers. We assume they return the number of key
@@ -299,9 +301,9 @@ $$
 f(n) \leq c g(n), \text{ for all } n \geq n_0
 $$
 
-Intuitively, this is a way to say that one function is, in a sense, less than or
-equal to some other function. When we say $f(n)$ is $O(g(n))$, we mean that,
-when $n$ is big, $g(n)$ is an upper bound on $f(n)$.
+Intuitively, this says that $f$ is, in a sense, less than or equal to $g$. When
+we say $f(n)$ is $O(g(n))$, we mean that, when $n$ is big, $g(n)$ is an upper
+bound on $f(n)$.
 
 The expression "$f(n)$ is **big-O** of $g(n)$" can be phrased in these
 equivalent ways:
@@ -349,7 +351,7 @@ This is true if we choose, say, $c = 2$ and $n_0 = 1$. This satisfies the
 definition, and so we've proven that $2n$ is $O(n^2)$.
 
 Note that other choices of $c$ and $n_0$ would also work. For example, $c = 35$
-and $n_0 = 100$ would also work. You *don't* need to find the smallest values.
+and $n_0 = 100$ could be used. You *don't* need to find the smallest values.
 
 **Example**. Let's prove that $2n$ is *not* $O(1)$. According to the definition,
 if $2n$ was $O(1)$, then there would be a real constant $c > 0$ and an integer
@@ -379,7 +381,7 @@ $$
 2n^2 + 3n + 5 \leq c n^2, \text{ for all } n \geq n_0
 $$
 
-Simplifying the inequality, we get:
+Dividing both sides by $n^2$ gives us:
 
 $$
 2 + \frac{3}{n} + \frac{5}{n^2} \leq c,  \text{ for all } n \geq n_0
@@ -408,8 +410,8 @@ were just their single highest-order term.
 This fact is proven on p.168 of the textbook. The idea is interesting. It starts
 with the observation that when $n > 1$, this is true: 
 $1 \leq n \leq n^2 \leq \ldots \leq n^d$. 
-Then consider the expression $a_0 + a_1 n + a_2 n^2 + \ldots + a_d n^d$. 
-Then imagine replacing the terms like this:
+Then consider the expression $a_0 + a_1 n + a_2 n^2 + \ldots + a_d n^d$, and 
+imagine replacing the terms like this:
 
 - $a_0$ is replaced by the bigger term $a_0 n^d$
 - $a_1 n$ is replaced by the bigger term $a_1 n^d$
@@ -419,7 +421,7 @@ Then imagine replacing the terms like this:
 
 After these replacements you get the sum 
 $a_0 n^d + a_1 n^d + a_2 n^d + \ldots + a_d n^d$, which is bigger than the original
-expression because each term is bigger than the one it replaces. 
+expression because each term is replaced by a bigger one. 
 If you factor out the $n^d$, you get $(a_0 + a_1 + a_2 + \ldots + a_d)n^d$.
 Since all the $a_i$ are fixed constants, the sum $a_0 + a_1 + a_2 + \ldots + a_d$ is
 also a fixed constant, and we can choose it as the value of $c$ in the definition
@@ -429,14 +431,14 @@ $f(n) = a_d n^d + a_{d-1} n^{d-1} + \cdots + a_1 n + a_0$ is $O(n^d)$.
 > The proof in the book requires that all the $a_i$ are positive. So it doesn't
 > apply directly to polynomials like $n^2 - 100n + 1$. But that's okay: if we
 > add $100n$, then we get at $n^2 - 100n + 1 <= n^2 + 1$. Since $n^2 + 1$ has
-> only positive coefficients, we see that $n^2 + 1$ is $O(n^2)$, and so the
+> only positive coefficients, we see that $n^2 + 1$ is $O(n^2)$, and thus the
 > smaller expression $n^2 - 100n + 1$ is also $O(n^2)$.
 
 
 ## Simplest Terms for O-notation
 
 As mentioned above, you can think of the expression $f(n) is $O(g(n))$ as
-saying, in a way, that $f(n)$ is less than or equal to $g(n)$. With this
+saying, in a way, that $f$ is less than or equal to $g$. With this
 interpretation in mind, we usually want to get the **simplest**, or
 **tightest**, value for $g(n)$ that we can.
 
@@ -451,16 +453,17 @@ $O(n^200)$, but those bounds are not as tight, and so not as useful.
 ## Example: Linear Search in a Linked List
 
 Let's analyze the running time of linear search in a linked list. Linear search
-is an algorithm that searches for a value in a list by looking at each element
-in the list in turn. If the value is found, the algorithm returns the index of
-the element. If the value is not found, the algorithm returns -1.
+is an algorithm that searches for a given target value in a list by looking at
+each element in the list in turn. If the target value is found, the algorithm
+returns the index of the element (or maybe a pointer to the element). If the
+value is not found, the algorithm returns -1.
 
 For example, in the list [3, 5, 2, 7, 1], the value 7 is at index 3, and so
 linear search for 7 would return 3. If you do linear search for 8, it would
 return -1.
 
-What is the performance of this linear search? We assume the list has $n$ nodes,
-and that the list is not sorted, or in any particular order. The standard key
+What is the performance of linear search? We assume the list has $n$ nodes, and
+that the list is not sorted, or in any particular order. The standard key
 operation for linear search is *comparisons*, i.e. number of calls to `x == y`.
 The number of comparisons is then:
 
@@ -531,11 +534,11 @@ time it takes for the algorithm to process $n$ items is $T(n) = t \cdot n^2$. If
 you double the input size, then the algorithm will take $T(2n)$ time, which we
 can write like this: $T(2n) = t \cdot (2n)^2 = t \cdot 4n^2 = 4 T(n)$.
 
-So we have the formula $T(2n) = 4 T(n)$.
+So for $T(n) = t \cdot n^2$, this is also true: $T(2n) = 4 T(n)$.
 
 Suppose it takes 3 seconds for the algorithm to process an input of size $n=50$,
 meaning $T(50) = 3$. When it processes $n=100$ items, it will take $T(100)$
-time, which can be calculated using the $T(2n)$ formula like this:
+time, which can be calculated using $T(2n) = 4 T(n)$:
 
    $T(100) = T(2 \cdot 50) = 4T(50) = 4 \cdot 3 = 12$ seconds
 
@@ -551,15 +554,15 @@ you double the input size, then the algorithm will take $T(2n)$ time, which we
 can write like this: $T(2n) = t \cdot 2^{2n} = t \cdot 2^n \cdot 2^n = (t \cdot
 2^n) \cdot 2^n = T(n) \cdot 2^n$.
 
-So we have the formula $T(2n) = T(n) \cdot 2^n$. 
+So for $T(n) = t \cdot 2^n$, this is also true: $T(2n) = T(n) \cdot 2^n$.
 
 Suppose it takes 3 seconds for the algorithm to process an input of size $n=50$,
 which means $T(50) = 3$. When it processes $n=100$ items, it will take $T(100)$
-time, which can be calculated using the $T(2n)$ formula like this:
+time, which can be calculated using $T(2n) = T(n) \cdot 2^n$:
 
    $T(100) = T(2 \cdot 50) = T(50) \cdot 2^{50} = 3 \cdot 2^{50}$ seconds
 
-$3 \cdot 2^{50}$ seconds is huge: it's over 107 million years!
+$3 \cdot 2^{50}$ seconds is huge: it's over 35 million years!
 
 This shows that when you double the input to an $O(2^n)$ algorithm, the running
 increases by a factor of $2^n$.
