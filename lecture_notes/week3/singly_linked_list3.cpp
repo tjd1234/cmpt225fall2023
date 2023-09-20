@@ -9,6 +9,7 @@
 // - push_front_new (only adds a string if it's not already on the list)
 //
 
+#include "List_base.h"
 #include <cassert>
 #include <iostream>
 
@@ -19,7 +20,7 @@ string quote(string s)
     return "\"" + s + "\"";
 }
 
-class List
+class List : public List_base
 {
     struct Node
     {
@@ -33,8 +34,10 @@ class List
     //
     Node *head = nullptr;
 
+    //
     // Returns a pointer to the first node in the list that contains s. If no
     // node contains s, returns nullptr.
+    //
     Node *walk_to(const string &s) const
     {
         Node *p = head;
@@ -50,7 +53,9 @@ class List
         return nullptr;
     }
 
+    //
     // Returns a pointer to the ith node in the list.
+    //
     Node *walk_to(int index) const
     {
         Node *p = head;
@@ -61,10 +66,12 @@ class List
         return p;
     }
 
+    //
     // Remove the node after p from the list. Can't delete the first element:
     // use pop_front for that.
     //
     // Assume p points to a valid node in the list.
+    //
     void remove_after(Node *p)
     {
         assert(p != nullptr);
