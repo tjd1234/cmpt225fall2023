@@ -81,10 +81,11 @@ initializes the new `Wordlist` to contain copies of all the strings in the other
 //     other is a valid Wordlist object
 // Post-condition:
 //     Creates a new Wordlist object that is a copy of other; other is not modified
-//     in any way, and other and the new object do not share any values.
+//     in any way, and other and the new object do not share any values. If other
+//     is frozen, then the new object is also frozen.
 // Performance:
-//     It's worst-case running time should be proportional to the length of
-//     other (or better).
+//     The number of calls to contains or add_word should be proportional to the 
+//     length of other (or better).
 //
 Wordlist(const Wordlist& other);
 ```

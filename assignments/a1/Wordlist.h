@@ -42,7 +42,7 @@ class Wordlist : public Wordlist_base
 {
     //
     // Use this Node to implement the doubly-linked list for the word list.
-    // Don't change it any way!
+    // Don't change the Node struct in any way!
     //
     struct Node
     {
