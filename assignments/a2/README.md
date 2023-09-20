@@ -3,11 +3,10 @@
 **IMPORTANT**: This assignment is NOT official yet. It could change at any time
 in any way.
 
-
 > In software, 'undo' erases our mistakes; in life, mistakes craft our story.
-> Imagine the tales we'd lose with a real-life Ctrl+Z. -- *ChatGPT*
+> Imagine the tales we'd lose with a real-life *Ctrl*+*Z*. -- *ChatGPT*
 
-In this assignment, your task is to add an *undo* feature to a list of strings.
+In this assignment, your task is to add an *undo* feature to a string list.
 
 To start, here's a working class called [Stringlist](Stringlist.h) that
 implements a string list as a dynamic array.
@@ -37,8 +36,8 @@ Your implementation must follow these rules:
 - Do **not** delete any methods, or change the *signatures* of any methods, in
   [Stringlist](Stringlist.h). You **can** change the *implementation* of
   existing methods if necessary. But they should still work the same way: **your
-  finished version of `Stringlist` with `undo` implement must still pass all the
-  tests in [Stringlist_test.cpp](Stringlist_test.cpp)**.
+  finished version of `Stringlist` with `undo` implemented must still pass all
+  the tests in [Stringlist_test.cpp](Stringlist_test.cpp)**.
 - You **can** add other helper methods (public or private), functions, and
   classes/structs to [Stringlist.h](Stringlist.h) if you need them.
 - You **must** implement `undo()` using a *private stack* that is accessible
@@ -94,24 +93,24 @@ g++ -std=c++17 -Wall -Wextra -Werror -Wfatal-errors -Wno-sign-compare -Wnon-virt
 Running your program with `valgrind` is important, since it will help you find
 memory leaks, and other memory-related errors.
 
-> **Note** There should be *no* errors when you run this testing! If you have
-> any, double-check that you are running exactly the correct file, and using the
-> correct compiler version, correct options, and correct [makefile](makefile).
+> **Note** There should be *no* errors when you run this test program! If you
+> have any, double-check that you are running exactly the correct file, and
+> using the correct compiler version, correct options, and correct
+> [makefile](makefile).
 
 ## Designing the Undo Stack
 
 As mentioned above, you must implement `undo()` using at least one *private
 stack* implemented as a linked list inside the `Stringlist` class. You can
-modify `Stringlist` only as described at the start of this assignment.
+modify `Stringlist` only as described above.
 
 The main idea for how undo works is that every time `Stringlist` is modified by
-one a method that can be undone, it *pushes* the *inverse* operation on the top
-of an undo stack. When `undo()` is called, it *pops* the top of the stack and
+a method that can be undone, it *pushes* the *inverse* operation on the top of
+an undo stack. When `undo()` is called, it *pops* the top of the stack and
 applies that operation to the list, thus undoing the most recent operation.
 
 **Important** All the methods in [Stringlist](Stringlist.h) marked "undoable"
-should work with `undo()`. Note that `undo()` cannot be undone: there is no
-"re-do" feature in this assignment.
+should work with `undo()`. Note that `undo()` itself **cannot** be undone.
 
 Here are some examples of how specific methods should work.
 
@@ -227,6 +226,7 @@ restored in *one* call to `undo()`.
   this case, *nothing* happens to `lst1`. Both its string data and undo stack
   are left as-is.
 
+
 ### Undoing `remove_all`
 
 For `remove_all`, suppose `lst` is `{"dog", "cat", "tree"}`. If you call
@@ -268,8 +268,7 @@ lst.undo();
 `undo()` should undo all the other methods in [Stringlist](Stringlist.h) that
 are marked "undoable" in the source code comments.
 
-As mentioned above, `undo()` is *not* undoable. There is no "re-do" feature in
-this assignment.
+As mentioned above, `undo()` is *not* undoable.
 
 
 ### Testing Your Code
