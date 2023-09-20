@@ -429,7 +429,16 @@ program thoroughly.
 ### Overall source code readability: 5 marks
 
 - All code is sensibly and consistently indented, and all lines are 100
-  characters in length, or less.
+  characters in length, or less. **Hint**: In the Linux command-line you can
+  print all the lines in a file with more than 100 characters with this command
+  (`<` is the prompt character, so don't type it):
+
+  ```bash
+  > awk 'length > 100' some_file.cpp
+  ```
+
+  If this prints nothing, then the file has no lines over 100 characters long.
+
 - Whitespace is used to group related pieces of a code to make it easier for
   humans to read. All whitespace has a purpose.
 - Variable and function names are self-descriptive.

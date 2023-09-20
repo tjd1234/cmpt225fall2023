@@ -113,13 +113,17 @@ public:
     //
     // Remove all nodes from the list.
     //
-    void clear()
-    {
-        while (!empty())
-        {
-            pop_front();
-        }
-    }
+    // Note: clear() is inherited from List_base and we don't need to write it
+    // again here. Try commenting this out and you'll see the main program still
+    // works.
+    //
+    // void clear()
+    // {
+    //     while (!empty())
+    //     {
+    //         pop_front();
+    //     }
+    // }
 
     //
     // Destructor: delete all the nodes on the list.
@@ -172,12 +176,44 @@ public:
 
 }; // List
 
+//
+// Test if two lists are equal, i.e. they are the same length and have the same
+// elements in the same order.
+//
+bool operator==(const List &lst1, const List &lst2)
+{
+    if (lst1.size() != lst2.size())
+    {
+        return false;
+    }
+
+    for (int i = 0; i < lst1.size(); i++)
+    {
+        if (lst1.get(i) != lst2.get(i))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+//
+// Test if two lists are not equal.
+//
+bool operator!=(const List &lst1, const List &lst2)
+{
+    return !(lst1 == lst2);
+}
+
 int main()
 {
     List lst1;
+    assert(lst1 == lst1);
     lst1.push_front("ant");
     lst1.push_front("beetle");
     lst1.push_front("caterpillar");
+    assert(lst1 == lst1);
     lst1.print();
 
     cout << "The first string is: " << lst1.peek_front() << endl;
@@ -186,6 +222,10 @@ int main()
     cout << "The first string is: " << lst1.peek_front() << endl;
 
     List lst2;
+    assert(lst1 != lst2);
+    lst1.clear();
+    assert(lst1 == lst2);
+
     lst2.push_front("sun");
     lst2.push_front("moon");
 

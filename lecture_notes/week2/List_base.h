@@ -13,7 +13,7 @@ using namespace std;
 
 //
 // List_base is an abstract base class representing an abstract data type (ADT)
-// of a list. 
+// of a list.
 //
 // Its methods are:
 //
@@ -117,6 +117,6 @@ public:
     //    Otherwise, you can have problems calling the right destructor in
     //    inheriting classes.
     //
-    virtual ~List_base() {}
+    virtual ~List_base() { }
 
 }; // class List_base
