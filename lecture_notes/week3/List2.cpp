@@ -43,7 +43,7 @@ public:
     //
     bool empty() const
     {
-        return this->head == nullptr;
+        return head == nullptr;
     }
 
     //

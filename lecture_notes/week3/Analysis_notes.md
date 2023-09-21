@@ -368,10 +368,11 @@ than $c$.
 
 ## Some Useful Properties of O-notation
 
-$O$-notation lets us ignore constant factors and lower-order terms. For example,
-if $f(n) = 2n^2 + 3n + 5$, then $f(n)$ is $O(n^2)$. Intuitively, this means,
-when $n$ is big, $n^2$ is so big that $3n$ and $5$ hardly make any difference.
-When $n$ is big, $f(n)$ is very close to $n^2$.
+$O$-notation is a mathematically respectable way of ignoring constant factors
+and lower-order terms. For example, if $f(n) = 2n^2 + 3n + 5$, then $f(n)$ is
+$O(n^2)$. Intuitively, this means, when $n$ is big, $n^2$ is so big that $3n$
+and $5$ hardly make any difference. When $n$ is big, $f(n)$ is very close to
+$n^2$.
 
 **Example**. Let's prove that $2n^2 + 3n + 5$ is $O(n^2)$. According to the
 definition, we need to find a real constant $c > 0$ and an integer constant $n_0
@@ -430,20 +431,20 @@ $f(n) = a_d n^d + a_{d-1} n^{d-1} + \cdots + a_1 n + a_0$ is $O(n^d)$.
 
 > The proof in the book requires that all the $a_i$ are positive. So it doesn't
 > apply directly to polynomials like $n^2 - 100n + 1$. But that's okay: if we
-> add $100n$, then we get at $n^2 - 100n + 1 <= n^2 + 1$. Since $n^2 + 1$ has
-> only positive coefficients, we see that $n^2 + 1$ is $O(n^2)$, and thus the
-> smaller expression $n^2 - 100n + 1$ is also $O(n^2)$.
+> add $100n$, then we get $n^2 - 100n + 1 <= n^2 + 1$. Since $n^2 + 1$ has only
+> positive coefficients, we see that $n^2 + 1$ is $O(n^2)$, and thus the smaller
+> expression $n^2 - 100n + 1$ is also $O(n^2)$.
 
 
 ## Simplest Terms for O-notation
 
 As mentioned above, you can think of the expression $f(n) is $O(g(n))$ as
-saying, in a way, that $f$ is less than or equal to $g$. With this
-interpretation in mind, we usually want to get the **simplest**, or
-**tightest**, value for $g(n)$ that we can.
+saying, in a way, that $f$ is less than, or equal, to $g$. With this
+interpretation in mind, we usually want the **simplest**, or **tightest**, value
+for $g(n)$ that we can.
 
 For example, it's true that $2n$ is $O(n^2)$, but it's also true that $2n$ is
-$O(n)$. It's more informative to say that $2n$ is $O(n)$. When we ask for an
+$O(n)$. It's more common to say that $2n$ is $O(n)$. When we ask for an
 $O$-notation description of an expression, we usually want the tightest one.
 
 **Example**. The simplest $O$-notation description of $2n^2 + 3n + 5$ is
