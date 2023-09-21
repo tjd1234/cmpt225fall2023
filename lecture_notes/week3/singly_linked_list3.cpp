@@ -1,4 +1,4 @@
-// linked_list3.cpp
+// singly_linked_list3.cpp
 
 //
 // Like linked_lst3.cpp, but with these methods:
@@ -75,6 +75,10 @@ class List : public List_base
     void remove_after(Node *p)
     {
         assert(p != nullptr);
+        if (p->next == nullptr) // if p points to the last node, do nothing
+        {
+            return;
+        }
         Node *q = p->next;
         p->next = q->next;
         delete q;
@@ -343,3 +347,4 @@ int main()
 
     cout << "All tests passed!\n";
 } // main
+

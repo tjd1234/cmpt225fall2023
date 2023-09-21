@@ -82,8 +82,6 @@ public:
     // Since it is virtual, an inheriting class can, if it chooses, to over-ride
     // this implementation and provide its own.
     //
-
-    //
     // Pre-condition:
     //    none
     // Post-condition:

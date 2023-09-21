@@ -84,8 +84,7 @@ initializes the new `Wordlist` to contain copies of all the strings in the other
 //     in any way, and other and the new object do not share any values. If other
 //     is frozen, then the new object is also frozen.
 // Performance:
-//     The number of calls to contains or add_word should be proportional to the 
-//     length of other (or better).
+//     The running-time should be proportional to the number of words in other.
 //
 Wordlist(const Wordlist& other);
 ```
@@ -103,8 +102,8 @@ simplicity, you can assume that the file is a text file that always exists:
 //     filename. If the file contains duplicate words, then the new Wordlist
 //     object will contain only one copy of each word.
 // Performance:
-//     It's worst-case running time should be proportional to the number of
-//     words in the file (or better).
+//     The number of calls to add_word should be proportional to the 
+//     length of other (or better).
 // Note:
 //     For this constructor a "word" is defined as the string return by the 
 //     >> operator. See the read_from_terminal() function for example of how 
