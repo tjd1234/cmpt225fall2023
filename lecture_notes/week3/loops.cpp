@@ -1,6 +1,7 @@
 // loops.cpp
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -96,13 +97,19 @@ void loop7(int N)
     cout << "loop7 num_called: " << num_called << "\n";
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    const int N = 20;
+    if (argc != 2)
+    {
+        cout << "Usage: " << argv[0] << " N\n";
+        return 1;
+    }
+    const int N = atoi(argv[1]);
     loop1(N);
     loop2(N);
     loop3(N);
     loop4(N);
     loop5(N);
     loop6(N);
+    cout << "N = " << N << "\n";
 }
