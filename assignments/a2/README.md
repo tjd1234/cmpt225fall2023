@@ -383,11 +383,11 @@ g++ -std=c++17 -Wall -Wextra -Werror -Wfatal-errors -Wno-sign-compare -Wnon-virt
   - if the marker can easily fix your file and make it work, then there is only a
     small deduction
   - if the marker has to spend a lot of time fixing your file, then there is a
-    larger deduction; if they can't make it work, then they you will get 
+    larger deduction; if they can't make it work, then they you will get 0
   
 ### Hints
 
 - The objects you store on the undo stack should contain enough information to
-  undo the operation that was just performed. You could, for example, your stack
-  could store `Action` objects, where `Action` is a private `struct` that stores
-  the name of the action and any other information needed for undoing.
+  undo the operations they correspond to. Your stack could, for example, store
+  `Action` objects, where `Action` is a private `struct` that stores the name of
+  the action and any other information needed for undoing.
