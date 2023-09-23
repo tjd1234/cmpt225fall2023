@@ -1,8 +1,5 @@
 ## Assignment 2: An Undoable List
 
-**IMPORTANT**: This assignment is NOT official yet. It could change at any time
-in any way.
-
 > In software, 'undo' erases our mistakes; in life, mistakes craft our story.
 > Imagine the tales we'd lose with a real-life *Ctrl*+*Z*. -- *ChatGPT*
 

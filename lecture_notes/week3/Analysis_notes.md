@@ -319,7 +319,7 @@ Here are some examples of $O$-notation expressions:
 - 5 is $O(1)$
 - 5 is $O(n)$
 - $2n$ is *not* $O(1)$, *not* $O(\log n)$, and *not* $O(n)$
-- $2n$ is $O(n)
+- $2n$ is $O(n)$
 - $n^2$ is *not* $O(n)$
 - $2n$ is $O(n \log n)$
 - $2n \log n$ is $O(n \log n)$
@@ -438,7 +438,7 @@ $f(n) = a_d n^d + a_{d-1} n^{d-1} + \cdots + a_1 n + a_0$ is $O(n^d)$.
 
 ## Simplest Terms for O-notation
 
-As mentioned above, you can think of the expression $f(n) is $O(g(n))$ as
+As mentioned above, you can think of the expression $f(n)$ is $O(g(n))$ as
 saying, in a way, that $f$ is less than, or equal, to $g$. With this
 interpretation in mind, we usually want the **simplest**, or **tightest**, value
 for $g(n)$ that we can.
@@ -449,7 +449,7 @@ $O$-notation description of an expression, we usually want the tightest one.
 
 **Example**. The simplest $O$-notation description of $2n^2 + 3n + 5$ is
 $O(n^2)$. It is also true to say that $2n^2 + 3n + 5$ is $O(n^3)$, or
-$O(n^200)$, but those bounds are not as tight, and so not as useful.
+$O(n^{200})$, but those bounds are not as tight, and so not as useful.
 
 ## Example: Linear Search in a Linked List
 
