@@ -343,16 +343,28 @@ g++ -std=c++17 -Wall -Wextra -Werror -Wfatal-errors -Wno-sign-compare -Wnon-virt
 ### Overall source code readability: 5 marks
 
 - All code is sensibly and consistently indented, and all lines are 100
-  characters in length, or less.
+  characters in length, or less. **Hint**: In the Linux command-line you can
+  print all the lines in a file with more than 100 characters with this command
+  (`<` is the prompt character, so don't type it):
+
+  ```bash
+  > awk 'length > 100' some_file.cpp
+  ```
+
+  If this prints nothing, then the file has no lines over 100 characters long.
+
 - Whitespace is used to group related pieces of a code to make it easier for
   humans to read. All whitespace has a purpose.
 - Variable and function names are self-descriptive.
-- Appropriate features of C++ are used, as discussed in class and in the notes.
-  **Note** If you use a feature that we haven't discussed in class, **you must
-  explain it in a comment**, even if you think it's obvious.
+- Appropriate features of C++ are used, as discussed in the course. **Note** If
+  you use a feature that we haven't discussed in class, **you must explain it in
+  a comment**, even if you think it's obvious.
 - Comments are used when needed to explain code whose purpose is not obvious
   from the code itself. There should be *no* commented-out code from previous
   versions.
+- Source code readability marks may be deducted for code that is unreadable in
+  some way not covered by the above. The deduction is proportional to how
+  serious the problem is.
 
 ### Deductions
 
