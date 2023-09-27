@@ -353,6 +353,44 @@ definition, and so we've proven that $2n$ is $O(n^2)$.
 Note that other choices of $c$ and $n_0$ would also work. For example, $c = 35$
 and $n_0 = 100$ could be used. You *don't* need to find the smallest values.
 
+**Example**. Let's prove that $4n^2 + 2n - 1$ is $O(n^2)$. According to the
+definition, we need to find a real constant $c > 0$ and an integer constant $n_0
+\geq 1$ such that:
+
+$$
+4n^2 + 2n - 1 \leq c n^2, \text{ for all } n \geq n_0
+$$
+
+Re-arranging the inequality we get:
+
+$$
+2n - 1 \leq c n^2 - 4n^2, \text{ for all } n \geq n_0
+$$
+
+Setting $c = 5$ lets us simplify the right side of the inequality:
+
+$$
+2n - 1 \leq 5n^2 - 4n^2 = n^2, \text{ for all } n \geq n_0
+$$
+
+Re-arranging the inequality again gives us:
+
+$$
+-1 \leq n^2 - 2n, \text{ for all } n \geq n_0
+$$
+
+Or:
+
+$$
+-1 \leq n(n - 2), \text{ for all } n \geq n_0
+$$
+
+Now it's easy to see that if we set $n_0$ to, say, 5, then the inequality is
+always true. 
+
+Thus, setting $c = 5$ and $n_0 = 5$ satisfies the definition, which proves that
+$4n^2 + 2n - 1$ is $O(n^2)$.
+
 **Example**. Let's prove that $2n$ is *not* $O(1)$. According to the definition,
 if $2n$ was $O(1)$, then there would be a real constant $c > 0$ and an integer
 constant $n_0 \geq 1$ such that:
@@ -365,6 +403,29 @@ But there is no possible choice of $c$ and $n_0$ that would satisfy this
 inequality. $c$ and $n_0$ must be *fixed* constant values, and once they are
 chosen, $n$ can still be arbitrarily large, and so will eventually be greater
 than $c$.
+
+**Example**. Let's prove that $\frac{1}{2}n^2 - 3$ is *not* $O(n)$. If it were,
+then we'd be a real constant $c > 0$ and an integer constant $n_0 \geq 1$ such
+that:
+
+$$
+\frac{1}{2}n^2 - 3 \leq c n, \text{ for all } n \geq n_0
+$$
+
+But this is not possible. To see, divide both sides by $n$:
+
+$$
+\frac{1}{2}n - \frac{3}{n} \leq c, \text{ for all } n \geq n_0
+$$
+
+As $n$ gets bigger, the term $\frac{3}{n}$ gets smaller and smaller, approaching
+0. But the $\frac{1}{2}n$ term gets arbitrarily large as $n$ gets bigger. This
+means that, as $n$ gets bigger, the expression $\frac{1}{2}n - \frac{3}{n}$ gets
+arbitrarily large.
+
+However, that's not possible if we choose $c$ to be a fixed constant. No matter
+how big $c$ is, we can always choose $n$ to be big enough that $\frac{1}{2}n -
+\frac{3}{n}$ is greater than $c$.
 
 ## Some Useful Properties of O-notation
 
