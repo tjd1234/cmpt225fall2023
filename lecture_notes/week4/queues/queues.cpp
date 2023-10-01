@@ -102,7 +102,7 @@ void test_queue(Queue_base<int> *q)
 // vector<int> implementation
 //
 template <typename T>
-class Queue_vec : public Queue_base<int>
+class Queue_vec : public Queue_base<T>
 {
 private:
     vector<T> v;
@@ -123,9 +123,9 @@ public:
     T dequeue()
     {
         assert(!empty());
-        T x = v.back();
+        T result = v.back();
         v.pop_back();
-        return x;
+        return result;
     }
 
     // return a reference to the front element; error if queue is empty
@@ -279,17 +279,17 @@ void test_list_queue()
 //
 // Circular array implementation of queue.
 //
-// This treats the underlying array as circular, which allows the front_index
-// back_index to wrap around the array. This makes enqueue and dequeuing both
+// This treats the underlying array as circular, which allows the remove_index
+// add_index to wrap around the array. This makes enqueue and dequeuing both
 // O(1) operations.
 //
 template <typename T>
 class Queue_circular : public Queue_base<T>
 {
-    T *arr;          // pointer to the array
-    int front_index; // index of the current front element
-    int back_index;  // index of where the next back element will go
-    int n;           // current number of elements
+    T *arr;           // pointer to the array
+    int remove_index; // index of the current front element, where items are removed
+    int add_index;    // index of the current back element, where items are added
+    int n;            // current number of elements
 
 public:
     const int max_size = 0;
@@ -298,8 +298,8 @@ public:
     Queue_circular(int max_size) : max_size(max_size)
     {
         arr = new T[max_size];
-        front_index = 0;
-        back_index = 0;
+        remove_index = 0;
+        add_index = 0;
         n = 0;
     }
 
@@ -307,8 +307,8 @@ public:
     void enqueue(const T &x)
     {
         assert(n < max_size);
-        arr[back_index] = x;
-        back_index = (back_index + 1) % max_size;
+        arr[add_index] = x;
+        add_index = (add_index + 1) % max_size;
         n++;
     }
 
@@ -316,8 +316,8 @@ public:
     T dequeue()
     {
         assert(!empty());
-        T result = arr[front_index];
-        front_index = (front_index + 1) % max_size;
+        T result = arr[remove_index];
+        remove_index = (remove_index + 1) % max_size;
         n--;
         return result;
     }
@@ -326,7 +326,7 @@ public:
     const T &front() const
     {
         assert(!empty());
-        return arr[front_index];
+        return arr[remove_index];
     }
 
     // return true if stack is empty; default implementation is to check if
@@ -351,10 +351,10 @@ public:
     {
         if (empty())
             return "empty queue";
-        string s = "{" + std::to_string(arr[front_index]);
+        string s = "{" + std::to_string(arr[remove_index]);
         for (int i = 1; i < size(); i++)
         {
-            int loc = (front_index + i) % max_size;
+            int loc = (remove_index + i) % max_size;
             s += ", " + std::to_string(arr[loc]);
         }
         s += "} (front)";
