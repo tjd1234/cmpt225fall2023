@@ -16,6 +16,8 @@
 
 - [Installing WSL Linux on Windows](using_linux/installing_wsl_linux_on_windows.md).
 - [Some hints for setting up and using your Linux environment](using_linux/README.md).
+- The website [repl.it](https://repl.it) will let you run C++ programs directly
+  in your browser.
 
 # Lecture Notes and Code
 
