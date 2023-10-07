@@ -436,7 +436,7 @@ seen before.
 - All code is sensibly and consistently indented, and all lines are 100
   characters in length, or less. **Hint**: In the Linux command-line you can
   print all the lines in a file with more than 100 characters with this command
-  (the initial`>` is the prompt character, so don't type it):
+  (the initial `>` is the prompt character, so don't type it):
 
   ```bash
   > awk 'length > 100' some_file.cpp
