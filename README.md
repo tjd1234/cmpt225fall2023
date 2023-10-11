@@ -11,6 +11,7 @@
 - [Sample midterm questions](sample_midterm_questions/225_midterm_sample_questions.pdf) ([solutions](sample_midterm_questions/225_midterm_sample_questions_sol.pdf))
 - [Sample midterm](sample_midterm_questions/225_midterm_BBY_summer2023.pdf) ([solutions](sample_midterm_questions/225_midterm_BBY_summer2023_sol.pdf))
 - [Sample final questions](sample_final_questions/final_sample_questions.pdf) ([solutions](sample_final_questions/final_sample_questions_sol.pdf))
+- [Sample multiple choice questions](sample_MCQ/fiveMCQ.pdf) ([solutions](sample_MCQ/fiveMCQ_sol.pdf))
 
 # Using Linux
 
