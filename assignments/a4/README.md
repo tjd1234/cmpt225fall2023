@@ -1,35 +1,32 @@
 ## Assignment 4: Sorting
 
-> **WARNING** This assignment is not necessarily the final version of the
-> assignment. At any time it could change in any way.
-
 > The ability to destroy a planet is insignificant next to the power of sorting.
 > -- Darth Vader (if he was a computer scientist)
 
-Your task is to run performance experiments on 7 sorting algorithms: *bubble*
-sort, *insertion* sort, *selection* sort, *merge* sort, *quick* sort, *shell*
-sort, and a hybrid algorithm combining quick sort and insertion sort that we'll
-call *iquick* sort. You'll create a spreadsheet to report on your results.
+Your task is to run performance experiments on these sorting algorithms: 
+
+- *bubble* sort
+- *insertion* sort
+- *selection* sort
+- *shell* sort (see below)
+- *merge* sort
+- *quick* sort
+- *iquick* sort (see below)
+- *priority queue sort* where the priority queue is implemented as a heap
+
+You'll create a spreadsheet to report on your results (described below).
 
 Put your implementations of all the functions in a file named
 [a4_sort_implementations.h](a4_sort_implementations.h). Implement each algorithm
-as described in the textbook: you can use the code from the textbook, or from
-other sources (make sure to cite your sources!). Implement the *exact* function
-headers listed in [a4_base.h](a4_base.h). *Don't* change [a4_base.h](a4_base.h)
-in any way: all the sorting-related code you write goes in
+as described in the textbook/notes: you can use the code from the textbook, or
+from other sources (make sure to cite your sources!). Implement the *exact*
+function headers listed in [a4_base.h](a4_base.h). *Don't* change
+[a4_base.h](a4_base.h) in any way: put all the sorting-related code you write in
 [a4_sort_implementations.h](a4_sort_implementations.h).
 
 **Important** The *only* #include that
 [a4_sort_implementations.h](a4_sort_implementations.h) can use is `#include
 "a4_base.h"`. No other #includes are allowed.
-
-## iquick Sort
-
-*iquick* sort is regular quick sort, except when the sub-vectors being sorted
-are shorter than some predetermined threshold length, insertion sort is used to
-sort them instead of quick sort. If you choose a good threshold length, you can
-get better average-time performance than regular quick sort. Do some
-experimentation to find the best threshold length for *iquick* sort!
 
 ## Shell Sort
 
@@ -47,6 +44,21 @@ finish with a final pass of insertion sort.
 than this one, but, for the sake of consistency, do *not* use them. Use only the
 gap sequence given above.
 
+## iquick Sort
+
+*iquick* sort is regular quick sort, except when the sub-vectors being sorted
+are shorter than some predetermined threshold length (that you pick), insertion
+sort is used to sort them instead of quick sort. If you choose a good threshold
+length, you can get better average-time performance than regular quick sort. Do
+some experimentation to find the best threshold length!
+
+## Priority Queue Sort
+
+Implement priority queue sort (given in the lecture notes) using a heap to
+implement the priority queue. For consistency, please use the priority queue
+sort code given in the lectures. Since heaps do $$O(\log n)$$ worst-case
+insertion/removal in a priority queue, the overall worst-case running time of
+priority queue sort is $$O(n \log n)$$.
 
 ## Testing Your Implementations
 
@@ -95,8 +107,8 @@ For this assignment, `num_comparisons` is the number of times `<` or `<=` is
 called on the values in the vector. It has the type `ulong` (`unsigned long`)
 because the comparison counts can get very large.
 
-You should modify basic sorting functions to return accurate `Sort_stats`
-objects. You can write helper functions if you like.
+You should modify the code of the sorting functions to return accurate
+`Sort_stats` objects. You can write helper functions if you like.
 
 ### Example: Bubble Sort
 
@@ -155,12 +167,13 @@ void timed_experiment() {
 }
 ```
 
-[cpu_timer_example.cpp](cpu_timer_example.cpp) contains a complete example of
-some timing code.
+[cpu_timer_example.cpp](cpu_timer_example.cpp) contains an example of timing
+code.
 
 ## Helper Functions
 
-In addition to the sorting routines, there are two other helper functions in [a4_base.h](a4_base.h):
+In addition to the sorting routines, there are two other helper functions in
+[a4_base.h](a4_base.h) that you need to implement:
 
 - `is_sorted(v)` returns `true` if the vector is sorted in ascending order, and
   `false` otherwise. Its worst-case running time should be linear in the size of
@@ -176,7 +189,7 @@ implement them first.
 
 When your sorting algorithms are ready, use them to generate the following data:
 
-- For each of the 7 sorting algorithms, do the following:
+- For each of the 8 sorting algorithms, do the following:
   - For *N* = 2000, 4000, 6000, ..., 50000 (25 different values of *N*) do the
     following:
     - create a vector of *N* random integers, where the numbers in the vectors
@@ -185,8 +198,8 @@ When your sorting algorithms are ready, use them to generate the following data:
     - print the sort name, amount of data being sorted, number of comparisons
       that were done, and the CPU time (in seconds)
 
-Since there are 7 algorithms and 25 values of *N*, you'll end up with $$7 \cdot
-25 = 175$$ results. 
+Since there are 8 algorithms and 25 values of *N*, you'll end up with $$8 \cdot
+25 = 200$$ results. 
 
 If you print the individual results as **comma separated values** (**CSV**s),
 then you can more easily import them into a spreadsheet. For example, here are 4
@@ -206,7 +219,7 @@ Google Sheets as a CSV file.
 
 Using Excel or Google Sheets, create a table of all the data you generated. Here
 us an example of what the first four rows of the table ought to look like (the
-numbers in your table might be different):
+exact numbers in your table might be different):
 
 | **Name**    | **N** | **Comparisons** | **CPU Seconds** |
 |-------------|-------|-----------------|-----------------|
@@ -215,29 +228,29 @@ numbers in your table might be different):
 | bubble sort |  6000 | 35994000        | 0.035031        |
 | bubble sort |  8000 | 63992000        | 0.066863        |
 
-Please make the table 4 columns, and label each column with the given name, as
-shown.
+The table should have 4 columns, and each column is labellws with the given
+name, as shown.
 
-> **Remember** The table will have 175 rows of data.
+> **Remember** The table will have 200 rows of data.
 
-In addition to this table, **draw four graphs**, where the x-axis of each graph
-is *N* (the size of the vector being sorted), and has the values from the data
-you generated: N=2000, 4000, 6000, ..., 50000. The four graphs are:
+In addition to this table, **draw four line graphs**, where the x-axis of each
+graph is *N* (the size of the vector being sorted), and has the values from the
+data you generated: N=2000, 4000, 6000, ..., 50000. The four graphs are:
 
 - **Graph 1**: **CPU time** for *bubble* sort, *insertion* sort, *selection*
   sort, and *shell** sort. The the y-axis is the CPU time in seconds.
 
-- **Graph 2**: **CPU time** for *merge* sort, *quick* sort, and *iquick* sort.
-  The y-axis is the CPU time in seconds.
+- **Graph 2**: **CPU time** for *merge* sort, *quick* sort, *iquick* sort, and
+  *priority queue sort*. The y-axis is the CPU time in seconds.
 
 - **Graph 3**: **comparison counts** for *bubble* sort, *insertion* sort,
   *selection* sort, and *shell* sort. The y-axis is the number of comparisons. 
 
-- **Graph 4**: **comparison counts** for *merge* sort, *quick* sort, and
-  *iquick* sort. The y-axis is the number of comparisons. 
+- **Graph 4**: **comparison counts** for *merge* sort, *quick* sort, *iquick*
+  sort, and *priority queue sort*. The y-axis is the number of comparisons. 
 
-Each graph will have 3 or 4 lines on it, one for each of the sorting algorithms
-it is plotting data for.
+Each graph will have 4 lines on it, one for each of the sorting algorithms it is
+plotting data for.
 
 Make these graphs *beautiful* and *easy to read*. Give them descriptive titles
 (**don't** just name them Graph 1, Graph 2, etc.!), clearly labelled x and y
@@ -286,14 +299,14 @@ code for speed.
 
 - **1 mark** for a correct and efficient implementation of `is_sorted(v)` 
 - **1 mark** for a correct and `rand_vec(size, min, max)`.
-- **12 marks** for implementing the 6 sorting algorithms (bubble sort is not
-  included since it's given in the notes); 2 for each correct sorting algorithm.
-  This includes both the correctness of the sorting algorithm itself, and the
-  correctness of the `Sort_stats` object it returns.
+- **14 marks** for implementing the 7 sorting algorithms (bubble sort is not
+  included since it's given in the notes); 2 marks for each correct sorting
+  algorithm. This includes both the correctness of the sorting algorithm itself,
+  and the correctness of the `Sort_stats` object it returns.
 - **5 marks** for a nicely-formatted spreadsheet table with 4 columns (all
-  labelled) and 175 rows of data, as explained above.
+  labelled) and 200 rows of data, as explained above.
 - **5 marks** for graphs that are beautiful, easy to read, have good titles,
-  have their axes labelled, and clearly label the different plots using color or
+  have their axes labelled, and clearly label the different lines using color or
   textures. If the graphs look wrong, or have missing data, or plot the wrong
   thing, etc., the highest possible mark for this part will be **2 marks**.
 
@@ -323,7 +336,7 @@ code for speed.
   - you *don't* include the "Statement of Originality", or it is modified in any
     way
   - you use code from some other source (e.g. the web, the textbook, ChatGPT, a
-    friend, a teacher, a TA...) *without* citing its source
+    friend, a teacher, a TA...) *without* citing the source
   - you submit a "wrong" non-working file, and then *after the due date* submit
     the "right" file. If you can provide evidence that you finished the
     assignment on time, then it may be marked

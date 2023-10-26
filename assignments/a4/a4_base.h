@@ -11,7 +11,7 @@
 using namespace std;
 
 //
-// For conveniently printing vectors.
+// For conveniently printing vectors using <<.
 //
 template <typename T>
 ostream &operator<<(ostream &os, const vector<T> &v)
@@ -44,6 +44,10 @@ struct Sort_stats
     ulong num_comparisons = 0;
     double cpu_running_time_sec = 0.0;
 
+    //
+    // Returns results formatted as a CSV line.
+    // CSV = comma separated values
+    //
     string to_csv() const
     {
         return sort_name + ", " + to_string(vector_size) + ", " + to_string(num_comparisons) + ", " + to_string(cpu_running_time_sec);
@@ -51,7 +55,7 @@ struct Sort_stats
 }; // struct Sort_stats
 
 //
-// For conveniently printing Sort_stats objects.
+// For conveniently printing Sort_stats objects using <<.
 //
 ostream &operator<<(ostream &os, const Sort_stats &ss)
 {
@@ -84,11 +88,18 @@ vector<int> rand_vec(int n, int min, int max);
 
 //////////////////////////////////////////////////////////////////////////////////
 //
-// Sorting algorithm headers. 
+// Sorting algorithm headers.
 //
-// Each algorithm implements the named algorithm as described in the textbook
-// (iquick sort is described in the assignment), and returns a Sort_stats object
-// containing statistics about the run.
+// Each algorithm implements the named algorithm as described in the
+// textbook/notes (iquick sort is described in the assignment), and returns a
+// Sort_stats object containing statistics about the run.
+//
+// All the sorting functions have the same pre-conditions and post-conditions:
+//
+//    Pre-condition:
+//       none
+//    Post-condition:
+//       v is permuted so that v[0] <= v[1] <= ... <= v[n-1]
 //
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -103,13 +114,13 @@ Sort_stats selection_sort(vector<T> &v);
 
 //
 // Important requirement: Shellsort must use this sequence of gaps: n/2, n/4,
-//    n/8, ..., 1.
+// n/8, ..., 1.
 //
-//    Do not use any other gap sequence!
+// Do not use any other gap sequence!
 //
-//    This sequence of gaps does *not* result in the most efficient version of
-//    shellsort (it is worst-case quadratic), but it does make it easier to
-//    compare it to the other algorithms.
+// This sequence of gaps does *not* result in the most efficient version of
+// shellsort (it is worst-case quadratic), but it does make it easier to compare
+// it to the other algorithms.
 //
 template <typename T>
 Sort_stats shell_sort(vector<T> &v);
@@ -120,6 +131,14 @@ Sort_stats merge_sort(vector<T> &v);
 template <typename T>
 Sort_stats quick_sort(vector<T> &v);
 
-// See description in assignment
+//
+// See description in assignment.
+//
 template <typename T>
 Sort_stats iquick_sort(vector<T> &v);
+
+//
+// See description in assignment.
+//
+template <typename T>
+Sort_stats priority_queue_sort(vector<T> &v);

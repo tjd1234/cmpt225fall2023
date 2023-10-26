@@ -5,6 +5,8 @@
 //
 // Ignores the Sort_stats object returned by the sort functions.
 //
+// You can modify this file any way you like. It is not submited for grading.
+//
 
 #include "a4_base.h"
 #include "a4_sort_implementations.h"

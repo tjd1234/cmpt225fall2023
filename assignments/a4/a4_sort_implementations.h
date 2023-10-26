@@ -11,5 +11,5 @@ using namespace std;
 
 //
 // Put the implementations of all the functions listed in a4_base.h here, as
-// well as is_sorted and rand_vec. You can other helper functions if needed.
+// well as is_sorted and rand_vec. You can use other helper functions if needed.
 //
