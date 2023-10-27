@@ -33,9 +33,8 @@ function headers listed in [a4_base.h](a4_base.h). *Don't* change
 [Shell sort](https://en.wikipedia.org/wiki/Shellsort) is a sorting algorithm
 that works by swapping pairs of elements in ever-decreasing gaps. The sequence
 of gaps has a significant impact on the algorithm's performance, and so for
-consistency you are **required** to use this gap sequence: 
-$\frac{n}{2), \frac{n}{4}, \frac{n}{8}. \ldots, 1$ where $$n$$ is the size of the vector
-being sorted.
+consistency you are **required** to use this gap sequence: n/2, n/4, n/8 ..., 1
+where n is the size of the vector being sorted.
 
 This means that the last gap will always be 1, and so the algorithm will always
 finish with a final pass of insertion sort.
@@ -56,9 +55,9 @@ some experimentation to find the best threshold length!
 
 Implement priority queue sort (given in the lecture notes) using a heap to
 implement the priority queue. For consistency, please use the priority queue
-sort code given in the lectures. Since heaps do $$O(\log n)$$ worst-case
+sort code given in the lectures. Since heaps do O(log n) worst-case
 insertion/removal in a priority queue, the overall worst-case running time of
-priority queue sort is $$O(n \log n)$$.
+priority queue sort is O(n log n).
 
 ## Testing Your Implementations
 
@@ -198,8 +197,8 @@ When your sorting algorithms are ready, use them to generate the following data:
     - print the sort name, amount of data being sorted, number of comparisons
       that were done, and the CPU time (in seconds)
 
-Since there are 8 algorithms and 25 values of *N*, you'll end up with $$8 \cdot
-25 = 200$$ results. 
+Since there are 8 algorithms and 25 values of *N*, you'll end up with 8 * 25 =
+200 results. 
 
 If you print the individual results as **comma separated values** (**CSV**s),
 then you can more easily import them into a spreadsheet. For example, here are 4
@@ -228,7 +227,7 @@ exact numbers in your table might be different):
 | bubble sort |  6000 | 35994000        | 0.035031        |
 | bubble sort |  8000 | 63992000        | 0.066863        |
 
-The table should have 4 columns, and each column is labellws with the given
+The table should have 4 columns, and each column is labelled with the given
 name, as shown.
 
 > **Remember** The table will have 200 rows of data.
@@ -324,7 +323,7 @@ code for speed.
   from the code itself. There should be *no* commented-out code from previous
   versions.
 
-### Deductions
+`### Deductions
 
 - **-5 marks** for any memory leaks, or other errors, reported by `valgrind`.
 - Up to **-3 marks** if you do *not* include your full name, email, and SFU ID
