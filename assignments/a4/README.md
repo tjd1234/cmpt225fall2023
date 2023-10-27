@@ -33,8 +33,8 @@ function headers listed in [a4_base.h](a4_base.h). *Don't* change
 [Shell sort](https://en.wikipedia.org/wiki/Shellsort) is a sorting algorithm
 that works by swapping pairs of elements in ever-decreasing gaps. The sequence
 of gaps has a significant impact on the algorithm's performance, and so for
-consistency you are **required** to use this gap sequence: $$\frac{n}{2),
-\frac{n}{4}, \frac{n}{8}. \ldots, 1$$ where $$n$$ is the size of the vector
+consistency you are **required** to use this gap sequence: 
+$\frac{n}{2), \frac{n}{4}, \frac{n}{8}. \ldots, 1$ where $$n$$ is the size of the vector
 being sorted.
 
 This means that the last gap will always be 1, and so the algorithm will always

@@ -14,7 +14,7 @@ int main()
     //
     // Simple way to measure CPU time used.
     //
-    clock_t start = clock();
+    clock_t start_time = clock();
 
     string result;
     string s = "this is a test, this is only a test";
@@ -23,8 +23,8 @@ int main()
         result += s + s;
     }
 
-    clock_t end = clock();
-    double elapsed_cpu_sec = double(end - start) / CLOCKS_PER_SEC;
+    clock_t end_time = clock();
+    double elapsed_cpu_sec = double(end_time - start_time) / CLOCKS_PER_SEC;
 
     cout << "Elapsed CPU time: " << elapsed_cpu_sec << " seconds" << endl;
 }
