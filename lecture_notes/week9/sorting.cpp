@@ -130,6 +130,9 @@ const vector<string> TIMING_WORDS = get_words(TIMING_FILE);
 
 struct Sort_tester
 {
+    //
+    // virtual destructor in case inheriting classes need their own destructor
+    //
     virtual ~Sort_tester() {}
 
     virtual string sort_name() const = 0;
@@ -310,10 +313,10 @@ class Bubble_sort_tester : public Sort_tester
 };
 
 //
-// This merges two vectors.
+// Merges two sorted vectors into a new vector
 //
 template <typename T>
-vector<T> merge(vector<T> &v1, vector<T> &v2)
+vector<T> merge(const vector<T> &v1, const vector<T> &v2)
 {
     vector<T> v;
     int i = 0;
@@ -383,6 +386,7 @@ class Merge_sort_tester : public Sort_tester
 
 //
 // Partitions a sub-vector of vector (for quick_sort).
+// Range is [start, end], i.e. end is included.
 //
 // The pivot is the last element in the sub-vector.
 //
@@ -391,6 +395,9 @@ class Merge_sort_tester : public Sort_tester
 template <typename T>
 int partition(vector<T> &v, int start, int end)
 {
+    //
+    // pivot always chosen to be the last element of the sub-vector
+    //
     T pivot = v[end];
     int i = start;
     for (int j = start; j < end; j++)
@@ -407,6 +414,8 @@ int partition(vector<T> &v, int start, int end)
 
 //
 // Quicksort
+//
+// Range is [start, end], i.e. end is included.
 //
 // Performance: O(n log n) on average, O(n^2) in the worst case.
 //
@@ -441,7 +450,6 @@ class Quick_sort_tester : public Sort_tester
     }
 };
 
-
 //
 // Same as quick_sort, but randomly shuffles the input vector first.
 //
@@ -465,16 +473,16 @@ class Quick_sort_randomized_tester : public Sort_tester
     }
 };
 
-
 //
 // Quicksort using std::partition from
 // https://en.cppreference.com/w/cpp/algorithm/partition
 //
 // The std::partition function is a C++ standard library function that
 // partitions a range of elements [first, last) around a pivot element, such
-// that all elements for which the predicate p returns true precede all elements
-// for which predicate p returns false. The iterator returned points to the
-// first element of the second group.
+// that all elements for which the predicate p (a function that takes one input
+// and returns true or false) returns true precede all elements for which p
+// returns false. It returns an iterator (a generalized pointer) the first
+// element of the second group.
 //
 // This implementation is flexible and efficient, competitive with std::sort.
 //
@@ -487,10 +495,11 @@ void quick_sort2(ForwardIt first, ForwardIt last)
 
     auto pivot = *std::next(first, std::distance(first, last) / 2);
 
+    //
     // [pivot](const auto &em) { return em < pivot; } is an example of a
-    // function with a no name, i.e. a "lambda function"; lambda function are
-    // handy when you want to pass a function as a parameter, as is done here
-    // with std::partition.
+    // function with a no name, i.e. a "lambda function". Lambda function are
+    // handy when you want to pass a function as a parameter, as is done here.
+    //
     auto middle1 = std::partition(first, last, [pivot](const auto &em)
                                   { return em < pivot; });
     auto middle2 = std::partition(middle1, last, [pivot](const auto &em)
@@ -519,7 +528,6 @@ class Quick_sort2_tester : public Sort_tester
     }
 };
 
-
 class Std_sort_tester : public Sort_tester
 {
     string sort_name() const
@@ -532,7 +540,6 @@ class Std_sort_tester : public Sort_tester
         std::sort(v.begin(), v.end());
     }
 };
-
 
 int main()
 {
@@ -553,7 +560,9 @@ int main()
     Quick_sort_randomized_tester().time_sort(TIMING_WORDS);
     Quick_sort2_tester().time_sort(TIMING_WORDS);
     Std_sort_tester().time_sort(TIMING_WORDS);
-    Bubble_sort_tester().time_sort(TIMING_WORDS);
+
+    cout << "Bubble skipped, it's too slow." << endl;
+    // Bubble_sort_tester().time_sort(TIMING_WORDS);
 
 } // main
 
