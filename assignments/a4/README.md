@@ -285,8 +285,9 @@ g++ -O3 -std=c++17 -Wall -Wextra -Werror -Wfatal-errors -Wno-sign-compare -Wnon-
 ```
 
 The file `a4_test.cpp` is a test program written by the marker that tests the
-correctness of your sorting algorithms. It will #include [a4_base.h](a4_base.h)
-and [a4_sort_implementations.h](a4_sort_implementations.h).
+correctness of your sorting algorithms (it is not provided here!). It will
+#include [a4_base.h](a4_base.h) and
+[a4_sort_implementations.h](a4_sort_implementations.h).
 
 Note that the `-O3` flag is one of the options: this asks g++ to optimize the
 code for speed.
