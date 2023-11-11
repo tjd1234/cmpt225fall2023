@@ -5,8 +5,8 @@ Assignment 1, this time using an **AVL tree** as its underlying representation.
 Vectors, arrays, linked lists, or other container data structures are *not*
 allowed.
 
-Recall that the `Wordlist` class stores a count of how many time words appear in
-a file.
+Recall that the `Wordlist` class stores a count of how many times words appear
+in a file.
 
 When it's done, you'll be able to write code like this:
 
@@ -33,22 +33,19 @@ All the code you'll submit for this assignment goes in [Wordlist.h](Wordlist.h).
 `Wordlist` class. 
 
 Be sure to thoroughly test your code before submitting it!
- 
-> **Note** You can download all the files for this assignment in a single .zip
-> archive from the [Github repository for the course](https://github.com/tjd1234/cmpt225summer2023). 
-> Click on the green "Code" button, and then click on "Download ZIP".
 
 
 ### Implement the Methods in Wordlist_base
 
 [Wordlist.h](Wordlist.h) contains the class `Wordlist` where you should
 implement all the virtual methods listed in the `Wordlist_base` class in
-[Wordlist_base.h](Wordlist_base.h). 
+[Wordlist_base.h](Wordlist_base.h).
 
 Most of the methods in `Wordlist_base` are *virtual* and *abstract*, and so you
 *must* write your own version of them in `Wordlist`. A couple of methods, such
 as `print_stats`, are *not* `virtual` and have implementations that you *can't*
-change, i.e. your `Wordlist` class must work correctly with them as given.
+change. Your `Wordlist` class must work correctly with those non-virtual methods
+as given.
 
 Do **not** change [Wordlist_base.h](Wordlist_base.h) in any way: keep it as-is.
 
@@ -56,9 +53,8 @@ Put your implementation of `Wordlist` in [Wordlist.h](Wordlist.h). It must
 publicly inherit from `Wordlist_base`, and use the `Node` `struct` (given in
 `Wordlist`) to implement an AVL tree.
 
-> **Don't** use vectors, arrays, linked lists or any other container data
-> structures in [Wordlist.h](Wordlist.h).
-
+> **Important** *Don't* use vectors, arrays, linked lists or any other container
+> data structures in [Wordlist.h](Wordlist.h).
 
 ### Implement Constructors, and a Destructor
 
@@ -147,10 +143,6 @@ Notice that *case matters*, e.g. `"This"` and `"this"` are counted as
 *different* words. Also, punctuation *matters*, e.g. `"test"` and `"test?"` are
 counted as different.
 
-> **Note** Real life programs would likely strip out punctuation and ignore
-> letter case, but in this assignment we want to count every word exactly as it
-> appears in the file. This makes the code a littler simpler to implement.
-
 Here's another example using the larger file
 [tiny_shakespeare.txt](tiny_shakespeare.txt):
 
@@ -158,7 +150,8 @@ Here's another example using the larger file
 ❯ ./a5_main < tiny_shakespeare.txt >tiny_shakespeare_out
 ```
 
-On average computer, this should run in a couple of seconds.
+On an average computer with a good implementation, this should run in no more
+than a couple of seconds.
 
 There's more than 25,000 lines of output, and so the example uses
 `>tiny_shakespeare_out` to re-direct the output to the file
@@ -284,28 +277,33 @@ Be sure to test your program, and run it with `valgrind`, before submitting it.
 
 ### Deductions
 
-- at least **-5 marks** for any memory leaks, or other errors, reported by
-  `valgrind`.
-- at least **-1 mark** if your file has an incorrect name, or you submit it in
-  the incorrect format, etc.
-- up to **-3 marks** if you do not include your full name, email, and SFU ID in
-  the header of your file.
-- **a score of 0** if you do any of the following:
-  - change `Node` in ways that are not allowed, if you modify anything in
-    `Wordlist_base`, or if you use a vector, array, or any other data structure
-    other than an AVL tree;
-  - don't include the "statement of originality, or its modified in any way;
-  - submit a "wrong" non-working file, and then *after the due date* submit the
-    "right" file. If you can provide evidence that you finished the assignment
-    on time, then it may be marked.
+- **-5 marks** for any memory leaks, or other errors, reported by `valgrind`.
+- Up to **-3 marks** if you do *not* include your full name, email, and SFU ID
+  in the header of your file.
+- **-1 mark** if the name of your submitted file is incorrect.
+- **A score of 0** if one or more of the following are true:
+  - Your code *doesn't* compile with the given makefile.
+  - You have changed the `Node` `struct` in any way, or you've changed how
+    `Wordlist` inherits from `Wordlist_base`.
+  - You *don't* include the "Statement of Originality", or it is modified in any
+    way.
+  - You use code from some other source (e.g. the web, the textbook, ChatGPT, a
+    friend, a teacher, a TA...) *without* citing the source.
+  - You submit a "wrong" non-working file, and then *after the due date* submit
+    the "right" file. If you can provide evidence that you finished the
+    assignment on time, then it may be marked.
+
+There may be other deductions, depending upon the circumstances.
 
 ## Differences from Assignment 1
 
 You can think of the AVL tree as storing the words in alphabetical order. So,
-the tie-breaking rule for the `most_frequent()` is to return the word that comes
-first alphabetically. 
+the tie-breaking rule for the `most_frequent()` method means that if two, or
+more, words tie for the most frequent, then the one with the word that comes
+first alphabetically is returned. 
 
-Also, the `is_sorted()` method should return `true` if the AVL tree is a BST
-(binary search tree), and `false` otherwise. In a working version of this
-assignment it should always return `true`: if ever your AVL tree is not a BST,
-then you have a serious problem!
+Also, the `is_sorted()` method could just return `true`, since an AVL tree is a
+BST, and BSTs always store items in order. However, we recommend that your
+`is_sorted()` actually go through the tree and check that it's a BST, ie. verify
+that all the words are in order. Calling this before/after every change to your
+tree can help with debugging.
