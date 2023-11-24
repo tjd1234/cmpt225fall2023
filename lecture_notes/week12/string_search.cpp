@@ -191,6 +191,198 @@ void contains_textbook_test()
     assert(!contains_textbook("A", "a"));
 }
 
+//
+// Returns true if source contains pattern, and false otherwise.
+//
+// This code is yet another way to implement contains.
+//
+
+//
+// Returns true if source contains pattern beginning at index start, and false
+// otherwise.
+//
+bool equals(const string &source, int start, const string &pattern)
+{
+    for (int i = 0; i < pattern.size(); i++)
+    {
+        if (source[start + i] != pattern[i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool contains_structured(const string &source, const string &pattern)
+{
+    int n = source.size();
+    int m = pattern.size();
+    for (int i = 0; i <= n - m; i++)
+    {
+        if (equals(source, i, pattern))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void contains_structured_test()
+{
+    Test("contains_structured_test");
+
+    assert(contains_structured("", ""));
+    assert(contains_structured("a", ""));
+    assert(contains_structured("a", "a"));
+    assert(contains_structured("ab", "a"));
+    assert(contains_structured("ab", "b"));
+    assert(contains_structured("ab", "ab"));
+    assert(contains_structured("abc", ""));
+    assert(contains_structured("abc", "a"));
+    assert(contains_structured("abc", "b"));
+    assert(contains_structured("abc", "c"));
+    assert(contains_structured("abc", "ab"));
+    assert(contains_structured("abc", "bc"));
+
+    assert(!contains_structured("", "a")); // fails
+    assert(!contains_structured("a", "b"));
+    assert(!contains_structured("ab", "c"));
+    assert(!contains_structured("abc", "d"));
+    assert(!contains_structured("abc", "ac"));
+    assert(!contains_structured("abc", "abcde"));
+    assert(!contains_structured("a", "ax"));
+    assert(!contains_structured("abc", "xyabc"));
+
+    assert(!contains_structured("a", "A"));
+    assert(!contains_structured("A", "a"));
+}
+
+////////////////
+
+//
+// Returns true if source contains pattern, and false otherwise.
+//
+// This code is yet another way to implement contains.
+//
+
+//
+// Returns true if source contains pattern beginning at index start, and false
+// otherwise.
+//
+bool equals(string_view source, int start, string_view pattern)
+{
+    for (int i = 0; i < pattern.size(); i++)
+    {
+        if (source[start + i] != pattern[i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool contains_structured2(string_view source, string_view pattern)
+{
+    int n = source.size();
+    int m = pattern.size();
+    for (int i = 0; i <= n - m; i++)
+    {
+        if (equals(source, i, pattern))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void contains_structured2_test()
+{
+    Test("contains_structured2_test");
+
+    assert(contains_structured2("", ""));
+    assert(contains_structured2("a", ""));
+    assert(contains_structured2("a", "a"));
+    assert(contains_structured2("ab", "a"));
+    assert(contains_structured2("ab", "b"));
+    assert(contains_structured2("ab", "ab"));
+    assert(contains_structured2("abc", ""));
+    assert(contains_structured2("abc", "a"));
+    assert(contains_structured2("abc", "b"));
+    assert(contains_structured2("abc", "c"));
+    assert(contains_structured2("abc", "ab"));
+    assert(contains_structured2("abc", "bc"));
+
+    assert(!contains_structured2("", "a")); // fails
+    assert(!contains_structured2("a", "b"));
+    assert(!contains_structured2("ab", "c"));
+    assert(!contains_structured2("abc", "d"));
+    assert(!contains_structured2("abc", "ac"));
+    assert(!contains_structured2("abc", "abcde"));
+    assert(!contains_structured2("a", "ax"));
+    assert(!contains_structured2("abc", "xyabc"));
+
+    assert(!contains_structured2("a", "A"));
+    assert(!contains_structured2("A", "a"));
+}
+
+////////////////
+
+//
+// Returns true if source contains pattern, and false otherwise.
+//
+// This code is yet another way to implement contains. Using string_view makes
+// simpler code, but significantly slower than contains_structured:
+// source.sub_str returns a new string_view each time it is called.
+//
+
+bool contains_structured3(string_view source, string_view pattern)
+{
+    int n = source.size();
+    int m = pattern.size();
+    for (int i = 0; i <= n - m; i++)
+    {
+        if (pattern == source.substr(i, m))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void contains_structured3_test()
+{
+
+    Test("contains_structured3_test");
+
+    assert(contains_structured3("", ""));
+    assert(contains_structured3("a", ""));
+    assert(contains_structured3("a", "a"));
+    assert(contains_structured3("ab", "a"));
+    assert(contains_structured3("ab", "b"));
+    assert(contains_structured3("ab", "ab"));
+    assert(contains_structured3("abc", ""));
+    assert(contains_structured3("abc", "a"));
+    assert(contains_structured3("abc", "b"));
+    assert(contains_structured3("abc", "c"));
+    assert(contains_structured3("abc", "ab"));
+    assert(contains_structured3("abc", "bc"));
+
+    assert(!contains_structured3("", "a"));
+    assert(!contains_structured3("a", "b"));
+    assert(!contains_structured3("ab", "c"));
+    assert(!contains_structured3("abc", "d"));
+    assert(!contains_structured3("abc", "ac"));
+    assert(!contains_structured3("abc", "abcde"));
+    assert(!contains_structured3("a", "ax"));
+    assert(!contains_structured3("abc", "xyabc"));
+
+    assert(!contains_structured3("a", "A"));
+    assert(!contains_structured3("A", "a"));
+}
+
+//
+// Boyer-Moore algorithm
+//
 vector<int> make_last_function(const string &pattern)
 {
     const int N_ASCII = 128;          // number of ASCII characters
@@ -320,7 +512,7 @@ void performance_test()
         {
             cout << num << "/" << patterns.size() << endl;
         }
-        if (contains_string(source, p))
+        if (contains_structured(source, p))
         {
             match_count++;
         }
@@ -333,13 +525,16 @@ void performance_test()
 
 /*
 
-contains_textbook, -O3    : 73.3155 seconds (11442 matches) 
-contains_gpt4, -O3        : 65.6916 seconds (11442 matches) 
-contains_boyer_moore, -O3 : 51.9195 seconds (11442 matches) 
+contains_textbook, -O3    : 73.3155 seconds (11442 matches)
+contains_structured, -O3  : 72.5203 seconds (11442 matches)
+contains_structured2, -O3 : 66.2255 seconds (11442 matches)
+contains_structured3, -O3 : 272.234 seconds (11442 matches)
+contains_gpt4, -O3        : 65.6916 seconds (11442 matches)
+contains_boyer_moore, -O3 : 51.9195 seconds (11442 matches)
 contains_string, -O3      : 24.6495 seconds (11442 matches)
 
-C++'s built-in find is optimized to run efficiently on modern computers, and so 
-it is much faster than the textbook's code. For an example of what a 
+C++'s built-in find is optimized to run efficiently on modern computers, and so
+it is much faster than the textbook's code. For an example of what a
 std::string::find implementation looks like, see:
 
 https://github.com/gcc-mirror/gcc/commit/fc7ebc4b8d9ad7e2891b7f72152e8a2b7543cd65
@@ -348,9 +543,12 @@ https://github.com/gcc-mirror/gcc/commit/fc7ebc4b8d9ad7e2891b7f72152e8a2b7543cd6
 
 int main()
 {
-    // contains_string_test();
-    // contains_gpt4_test();
-    // contains_textbook_test();
-    // contains_boyer_moore();
-    performance_test();
+    contains_string_test();
+    contains_gpt4_test();
+    contains_textbook_test();
+    contains_structured_test();
+    contains_structured2_test();
+    contains_structured3_test();
+    contains_boyer_moore();
+    // performance_test();
 }
