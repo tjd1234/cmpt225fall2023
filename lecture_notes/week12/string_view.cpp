@@ -3,14 +3,14 @@
 //
 // A std::string_view can be thought of as a pointer to a character in a string,
 // plus a length. It is an efficient way to pass both C++ strings and C-style
-// strings as parameters to functions. With C-style strings, there is usually no
-// need to convert the string to a C++ string.
+// strings as parameters to functions. With C-style strings, there is no need to
+// convert it to a C++ string.
 //
 // A std::string_view cannot be modified, i.e. you cannot change the characters
-// of the underlying string. Getting substring with substr() is allowed and is
+// of the underlying string. Getting a substring with substr() is allowed and is
 // very efficient (since characters are not copied).
 //
-// If you need to modify the string, you can make a convert it to a std::string.
+// If you need to modify the string, you can convert it to a std::string.
 //
 // In general, std::string_view is a good choice for replacing const string&
 // parameters. It is more flexible, and often faster.
