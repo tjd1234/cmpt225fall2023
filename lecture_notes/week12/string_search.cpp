@@ -330,9 +330,7 @@ void contains_structured2_test()
 //
 // Returns true if source contains pattern, and false otherwise.
 //
-// This code is yet another way to implement contains. Using string_view makes
-// simpler code, but significantly slower than contains_structured:
-// source.sub_str returns a new string_view each time it is called.
+// This code is yet another way to implement contains.
 //
 
 bool contains_structured3(string_view source, string_view pattern)
@@ -512,7 +510,7 @@ void performance_test()
         {
             cout << num << "/" << patterns.size() << endl;
         }
-        if (contains_structured(source, p))
+        if (contains_string(source, p))
         {
             match_count++;
         }
@@ -543,12 +541,12 @@ https://github.com/gcc-mirror/gcc/commit/fc7ebc4b8d9ad7e2891b7f72152e8a2b7543cd6
 
 int main()
 {
-    contains_string_test();
-    contains_gpt4_test();
-    contains_textbook_test();
-    contains_structured_test();
-    contains_structured2_test();
-    contains_structured3_test();
-    contains_boyer_moore();
-    // performance_test();
+    // contains_string_test();
+    // contains_gpt4_test();
+    // contains_textbook_test();
+    // contains_structured_test();
+    // contains_structured2_test();
+    // contains_structured3_test();
+    // contains_boyer_moore();
+    performance_test();
 }
